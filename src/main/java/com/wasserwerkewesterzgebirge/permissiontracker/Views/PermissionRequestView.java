@@ -37,7 +37,7 @@ import java.time.format.DateTimeFormatter;
 @PermitAll
 public class PermissionRequestView extends VerticalLayout {
     Logger logger = LoggerFactory.getLogger(PermissionRequestService.class);
-    StreamResource ArrowStream = new StreamResource("arrow-down-1-svgrepo-com.svg", () -> getClass().getResourceAsStream("/static/Images/arrow-down-1-svgrepo-com.svg"));
+    StreamResource ArrowStream = new StreamResource("arrow-down-1-svgrepo-com.svg", () -> getClass().getResourceAsStream("/static/img/arrow-down-1-svgrepo-com.svg"));
     SecurityService securityService;
     ZWW_Authorities_Service zww_authorities_service;
     MailService mailService;

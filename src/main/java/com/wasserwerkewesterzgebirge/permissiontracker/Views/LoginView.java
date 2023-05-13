@@ -26,7 +26,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        StreamResource logoStream = new StreamResource("Icon.png", () -> getClass().getResourceAsStream("/static/Images/Icon.png"));
+        StreamResource logoStream = new StreamResource("icon.png", () -> getClass().getResourceAsStream("/static/img/Icon.png"));
         Image logoImage = new Image(logoStream, "Logo");
         logoImage.setAlt("LOGO");
         logoImage.setWidth("20%");
