@@ -14,3 +14,14 @@ a[highlight] {
     font-weight: bold;
     text-decoration: underline;
 }
+
+.link-content {
+    display: flex;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+.link-content iron-icon {
+    margin-right: 0.5rem;
+}
+
