@@ -18,6 +18,11 @@
         <vaadin.version>24.0.5</vaadin.version>
     </properties>
     <dependencies>
+        <!--        <dependency>-->
+        <!--            <groupId>com.flowingcode.vaadin.addons</groupId>-->
+        <!--            <artifactId>error-window-vaadin</artifactId>-->
+        <!--            <version>3.5.1</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-ldap</artifactId>

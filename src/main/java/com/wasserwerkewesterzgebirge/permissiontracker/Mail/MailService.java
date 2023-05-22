@@ -49,7 +49,7 @@ public class MailService {
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         String renderedBody = createDynamicMailContent_Quittung(
                 anfrage.getId(),
-                anfrage.getRequestersMail(),
+                anfrage.getRequestingPerson(),
                 anfrage.getBoss1DisplayName(),
                 anfrage.getDatumRequest(),
                 anfrage.getRequestedPermissions(),
