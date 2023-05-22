@@ -43,11 +43,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
         i18n.setForm(i18nForm);
 
         LoginI18n.ErrorMessage i18nErrorMessage = i18n.getErrorMessage();
-        i18nErrorMessage.setTitle("Da trat ein Fehler auf");
+        i18nErrorMessage.setTitle("Fehler");
         i18nErrorMessage.setMessage(
                 "Fehler text");
         i18n.setErrorMessage(i18nErrorMessage);
-
 
         loginForm.setAction("login");
         loginForm.setForgotPasswordButtonVisible(true);

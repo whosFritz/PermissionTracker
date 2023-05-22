@@ -6,7 +6,10 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -19,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
+
 
 public class MainLayout extends AppLayout {
     private final SecurityService securityService;
@@ -34,13 +38,26 @@ public class MainLayout extends AppLayout {
 
     }
 
-    private static Tab createTab(String text,
-                                 Class<? extends Component> navigationTarget) {
+    private static Tab createTab(String text, VaadinIcon icon, Class<? extends Component> navigationTarget) {
         final Tab tab = new Tab();
-        tab.add(new RouterLink(text, navigationTarget));
+        RouterLink routerLink = new RouterLink();
+        Div linkContent = new Div();
+        linkContent.addClassName("link-content");
+
+        Icon linkIcon = new Icon(icon);
+        linkIcon.setSize("1.5em"); // Adjust the icon size as needed
+        linkContent.add(linkIcon);
+
+
+        routerLink.add(linkContent);
+        routerLink.add(text);
+        routerLink.setRoute(navigationTarget);
+
+        tab.add(routerLink);
         ComponentUtil.setData(tab, Class.class, navigationTarget);
         return tab;
     }
+
 
     private Component createDrawerContent(Tabs menu) {
         VerticalLayout layout = new VerticalLayout();
@@ -73,14 +90,14 @@ public class MainLayout extends AppLayout {
 
     private Component[] createMenuItems() {
         return new Tab[]{
-                createTab("Deine Berechtigungen", GridView.class),
-                createTab("Neue Berechtigungen anfragen", PermissionRequestView.class),
-                createTab("About this WebApp", AboutView.class)
+                createTab("Deine Berechtigungen", VaadinIcon.USER, GridView.class),
+                createTab("Neue Berechtigungen anfragen", VaadinIcon.PLUS, PermissionRequestView.class),
+                createTab("About this WebApp", VaadinIcon.INFO, AboutView.class)
         };
     }
 
     private void createHeader() {
-        H2 logo = new H2("Permission Tracker");
+        H2 logo = new H2("PermissionTracker");
         logo.addClassNames("text-l", "m-m");
         Button logoutButton = new Button("Logout", event -> {
             logger.info("Benutzer wurde ausgeloggt: " + securityService.getLoggedInUser());
@@ -118,11 +135,4 @@ public class MainLayout extends AppLayout {
                         .equals(component.getClass()))
                 .findFirst().map(Tab.class::cast);
     }
-    //    private void createDrawer() {
-//
-//        RouterLink listView = new RouterLink("", GridView.class); //TODO symbole einfügen;
-//        RouterLink requestView = new RouterLink("", PermissionRequestView.class);
-//        RouterLink aboutView = new RouterLink("About this WebApp", AboutView.class);
-//        addToDrawer(new VerticalLayout(listView, requestView, aboutView));
-//    }
 }
