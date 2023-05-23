@@ -132,12 +132,13 @@ public class MailService {
         mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(whichBossApproved_mail(anfrage)));
         mimeMessage.setSubject("Berechtigungsanfrage von " + anfrage.getRequestingPerson() + " bestätigt");
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedContent = createDynamicMailContent_BossApproveInfo(
+        String renderedContent = createDynamicMailContent_ApproveInfo(
                 anfrage.getId(),
                 anfrage.getRequestingPerson(),
                 whichBossApproved_name(anfrage),
                 whichBossToSendNext_Name(anfrage),
-                datum
+                datum,
+                StaticEmailText.BOSS_APPROVE_INFO
         );
         mimeBodyPart.setContent(renderedContent, "text/html; charset=utf-8");
 
@@ -155,12 +156,13 @@ public class MailService {
         mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(anfrage.getRequestersMail()));
         mimeMessage.setSubject("Berechtigungsanfrage bestätigt von: " + whichBossApproved_name(anfrage));
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedContent = createDynamicMailContent_EmployeeApproveInfo(
+        String renderedContent = createDynamicMailContent_ApproveInfo(
                 anfrage.getId(),
                 anfrage.getRequestingPerson(),
                 whichBossApproved_name(anfrage),
                 whichBossToSendNext_Name(anfrage),
-                datum
+                datum,
+                StaticEmailText.EMPLOYEE_APPROVE_INFO
         );
         mimeBodyPart.setContent(renderedContent, "text/html; charset=utf-8");
 
@@ -250,7 +252,13 @@ public class MailService {
         mimeMessage.setSubject("Berechtigungsanfrage von " + anfrage.getRequestingPerson() + " abgelehnt");
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedBody = createDynamicMailContent_BossCancelInfo(anfrage.getId(), anfrage.getRequestingPerson(), whichBossCanceled_Name(anfrage), datum);
+        String renderedBody = createDynamicMailContent_CancelInfo(
+                anfrage.getId(),
+                anfrage.getRequestingPerson(),
+                whichBossCanceled_Name(anfrage),
+                datum,
+                StaticEmailText.BOSS_CANCEL_INFO
+        );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
         Multipart multipart = new MimeMultipart();
@@ -267,7 +275,13 @@ public class MailService {
         mimeMessage.setSubject("Berechtigungsanfrage abgelehnt von " + whichBossCanceled_Name(anfrage));
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedBody = createDynamicMailContent_EmployeeCancelInfo(anfrage.getId(), anfrage.getRequestingPerson(), whichBossCanceled_Name(anfrage), datum);
+        String renderedBody = createDynamicMailContent_CancelInfo(
+                anfrage.getId(),
+                anfrage.getRequestingPerson(),
+                whichBossCanceled_Name(anfrage),
+                datum,
+                StaticEmailText.EMPLOYEE_CANCEL_INFO
+        );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
         Multipart multipart = new MimeMultipart();
@@ -278,17 +292,7 @@ public class MailService {
         logger.info("Email an Vorgesetzten, dass er die Anfrage abgelehnt hat: " + anfrage);
     }
 
-    public String createDynamicMailContent_BossCancelInfo(Long id, String antragsteller, String ablehner, String datum) {
-        String msg = StaticEmailText.BOSS_CANCEL_INFO;
-        msg = msg.replaceAll("%Antragsteller", antragsteller);
-        msg = msg.replaceFirst("%Vorgesetzter", ablehner); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum);
-        msg = msg.replaceFirst("%ID", id.toString());
-        return msg;
-    }
-
-    public String createDynamicMailContent_EmployeeCancelInfo(Long id, String antragsteller, String ablehner, String datum) {
-        String msg = StaticEmailText.EMPLOYEE_CANCEL_INFO;
+    public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String msg) {
         msg = msg.replaceAll("%Antragsteller", antragsteller);
         msg = msg.replaceFirst("%Vorgesetzter", ablehner); // Vorgesetzter
         msg = msg.replaceFirst("%Datum", datum);
@@ -311,18 +315,7 @@ public class MailService {
         return msg;
     }
 
-    private String createDynamicMailContent_EmployeeApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum) {
-        String msg = StaticEmailText.EMPLOYEE_APPROVE_INFO;
-        msg = msg.replaceAll("%Antragsteller", requestingPerson);
-        msg = msg.replaceFirst("%Vorgesetzter", approver);
-        msg = msg.replaceFirst("%BossVonBoss", nextapprover);
-        msg = msg.replaceFirst("%Datum", datum);
-        msg = msg.replaceFirst("%ID", id.toString());
-        return msg;
-    }
-
-    private String createDynamicMailContent_BossApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum) {
-        String msg = StaticEmailText.BOSS_APPROVE_INFO;
+    private String createDynamicMailContent_ApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum, String msg) {
         msg = msg.replaceAll("%Antragsteller", requestingPerson);
         msg = msg.replaceFirst("%Vorgesetzter", approver);
         msg = msg.replaceFirst("%BossVonBoss", nextapprover);

@@ -3,9 +3,8 @@ package com.wasserwerkewesterzgebirge.permissiontracker.Security;
 import com.vaadin.flow.server.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class SessionConfig implements VaadinServiceInitListener, SystemMessagesProvider, SessionExpiredHandler, SessionDestroyListener {
     Logger logger = LoggerFactory.getLogger(SessionConfig.class);
 
