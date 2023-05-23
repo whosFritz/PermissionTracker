@@ -1101,7 +1101,7 @@ public class StaticEmailText {
             "    <meta content=\"text/html; charset=US-ASCII\" http-equiv=\"Content-Type\">" +
             "    <title>Email</title>" +
             "    <style type=\"text/css\">" +
-            "      body,table,td{font-family:Helvetica,Arial,sans-serif !important}.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{line-height:150%}a{text-decoration:none}*{color:inherit}a[x-apple-data-detectors],u+#body a,#MessageViewBody a{color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit}img{-ms-interpolation-mode:bicubic}table:not([class^=s-]){font-family:Helvetica,Arial,sans-serif;mso-table-lspace:0pt;mso-table-rspace:0pt;border-spacing:0px;border-collapse:collapse}table:not([class^=s-]) td{border-spacing:0px;border-collapse:collapse}@media screen and (max-width: 600px){.w-full,.w-full>tbody>tr>td{width:100% !important}*[class*=s-lg-]>tbody>tr>td{font-size:0 !important;line-height:0 !important;height:0 !important}.s-2>tbody>tr>td{font-size:8px !important;line-height:8px !important;height:8px !important}.s-3>tbody>tr>td{font-size:12px !important;line-height:12px !important;height:12px !important}.s-5>tbody>tr>td{font-size:20px !important;line-height:20px !important;height:20px !important}.s-10>tbody>tr>td{font-size:40px !important;line-height:40px !important;height:40px !important}}" +
+            "      body,table,td{font-family:Helvetica,Arial,sans-serif !important}.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{line-height:150%}a{text-decoration:none}*{color:inherit}a[x-apple-data-detectors],u+#body a,#MessageViewBody a{color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit}img{-ms-interpolation-mode:bicubic}table:not([class^=s-]){font-family:Helvetica,Arial,sans-serif;mso-table-lspace:0pt;mso-table-rspace:0pt;border-spacing:0px;border-collapse:collapse}table:not([class^=s-]) td{border-spacing:0px;border-collapse:collapse}@media screen and (max-width: 600px){.w-full,.w-full>tbody>tr>td{width:100% !important}.pt-3:not(table),.pt-3:not(.btn)>tbody>tr>td,.pt-3.btn td a,.py-3:not(table),.py-3:not(.btn)>tbody>tr>td,.py-3.btn td a{padding-top:12px !important}.pb-3:not(table),.pb-3:not(.btn)>tbody>tr>td,.pb-3.btn td a,.py-3:not(table),.py-3:not(.btn)>tbody>tr>td,.py-3.btn td a{padding-bottom:12px !important}*[class*=s-lg-]>tbody>tr>td{font-size:0 !important;line-height:0 !important;height:0 !important}.s-2>tbody>tr>td{font-size:8px !important;line-height:8px !important;height:8px !important}.s-3>tbody>tr>td{font-size:12px !important;line-height:12px !important;height:12px !important}.s-5>tbody>tr>td{font-size:20px !important;line-height:20px !important;height:20px !important}.s-10>tbody>tr>td{font-size:40px !important;line-height:40px !important;height:40px !important}}" +
             "    </style>" +
             "  </head>" +
             "  <body class=\"bg-light\" style=\"outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;\" bgcolor=\"#f7fafc\">" +
@@ -1165,7 +1165,15 @@ public class StaticEmailText {
             "                                                </tr>" +
             "                                              </tbody>" +
             "                                            </table>" +
-            "                                            <h5 style=\"padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;\" align=\"left\">Datum: %Datum</h5>" +
+            "                                            <table class=\"py-3\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">" +
+            "                                              <tbody>" +
+            "                                                <tr>" +
+            "                                                  <td style=\"line-height: 24px; font-size: 16px; padding-top: 12px; padding-bottom: 12px; margin: 0;\" align=\"left\">" +
+            "                                                    <h5 class=\"\" style=\"padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;\" align=\"left\">Datum: %Datum</h5>" +
+            "                                                  </td>" +
+            "                                                </tr>" +
+            "                                              </tbody>" +
+            "                                            </table>" +
             "                                            <h5 style=\"padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;\" align=\"left\">ID: %ID</h5>" +
             "                                            <table class=\"s-5 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">" +
             "                                              <tbody>" +
@@ -1206,7 +1214,7 @@ public class StaticEmailText {
             "                                              </table>" +
             "                                              <p class=\"\" style=\"line-height: 24px; font-size: 16px; width: 100%; margin: 0;\" align=\"left\">" +
             "                                                ihr Mitarbeiter %Antragsteller erbittet die Freigabe folgender" +
-            "                                                Berechtigungen." +
+            "                                                Berechtigungen. &#129320;" +
             "                                              </p>" +
             "                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">" +
             "                                                <tbody>" +
@@ -1303,7 +1311,7 @@ public class StaticEmailText {
             "                                              </table>" +
             "                                              <p class=\"\" style=\"line-height: 24px; font-size: 16px; width: 100%; margin: 0;\" align=\"left\">" +
             "                                                Wenn Sie die Berechtigung erteilen m&#246;chten, klicken Sie bitte auf" +
-            "                                                \"Berechtigung erteilen\"." +
+            "                                                \"Berechtigung erteilen\". &#128077;" +
             "                                              </p>" +
             "                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">" +
             "                                                <tbody>" +
@@ -1371,7 +1379,7 @@ public class StaticEmailText {
             "                                              </table>" +
             "                                              <p class=\"\" style=\"line-height: 24px; font-size: 16px; width: 100%; margin: 0;\" align=\"left\">" +
             "                                                Wenn Sie die Berechtigung nicht erteilen m&#246;chten, klicken Sie" +
-            "                                                bitte auf \"Berechtigung nicht erteilen\"." +
+            "                                                bitte auf \"Berechtigung nicht erteilen\". &#128078;" +
             "                                              </p>" +
             "                                              <table class=\"s-3 w-full\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%;\" width=\"100%\">" +
             "                                                <tbody>" +

@@ -202,10 +202,12 @@ public class MailService {
         mimeMessage.setSubject("Berechtigungsanfrage Ergebnis");
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedBody = createDynamicMailContent_FinalEmployeeApproveInfo(
+        String renderedBody = createDynamicMailContent_FinalApproveInfo(
                 anfrage.getId(),
                 anfrage.getRequestingPerson(),
-                datum);
+                datum,
+                StaticEmailText.FINAL_EMPLOYEE_APPROVE
+        );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
         Multipart multipart = new MimeMultipart();
@@ -222,10 +224,12 @@ public class MailService {
         mimeMessage.setSubject("Berechtigungsanfrage Ergebnis");
 
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedBody = createDynamicMailContent_FinalBossApproveInfo(
+        String renderedBody = createDynamicMailContent_FinalApproveInfo(
                 anfrage.getId(),
                 anfrage.getRequestingPerson(),
-                datum);
+                datum,
+                StaticEmailText.FINAL_BOSS_APPROVE
+        );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
         Multipart multipart = new MimeMultipart();
@@ -326,26 +330,20 @@ public class MailService {
 
     private String createDynamicMailContent_Quittung(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges) {
         String msg = StaticEmailText.QUITTUNG_FOR_EMPLOYEE;
-        msg = msg.replaceFirst("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceFirst("%Vorgesetzter", vorgesetzter); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum); // Datum
-        msg = msg.replaceFirst("%Tabelle", HTML_table_builder(gruppen)); // table
-        msg = msg.replaceFirst("%Sonstiges", sonstiges);
+        try {
+            msg = msg.replaceFirst("%ID", id.toString());
+            msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
+            msg = msg.replaceFirst("%Vorgesetzter", vorgesetzter); // Vorgesetzter
+            msg = msg.replaceFirst("%Datum", datum); // Datum
+            msg = msg.replaceFirst("%Tabelle", HTML_table_builder(gruppen)); // table
+            msg = msg.replaceFirst("%Sonstiges", sonstiges);
+        } catch (Exception e) {
+            logger.error("Fehler bei der Quittungserstellung", e);
+        }
         return msg;
     }
 
-    private String createDynamicMailContent_FinalEmployeeApproveInfo(Long id, String antragsteller, String datum) {
-        String msg = StaticEmailText.FINAL_EMPLOYEE_APPROVE;
-        msg = msg.replaceFirst("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceFirst("%Vorgesetzter", GF_NAME); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum); // Datum
-        return msg;
-    }
-
-    private String createDynamicMailContent_FinalBossApproveInfo(Long id, String antragsteller, String datum) {
-        String msg = StaticEmailText.FINAL_BOSS_APPROVE;
+    private String createDynamicMailContent_FinalApproveInfo(Long id, String antragsteller, String datum, String msg) {
         msg = msg.replaceFirst("%ID", id.toString());
         msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
         msg = msg.replaceFirst("%Vorgesetzter", GF_NAME); // Vorgesetzter
