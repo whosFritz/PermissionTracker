@@ -1,6 +1,8 @@
 package com.wasserwerkewesterzgebirge.permissiontracker.Views;
 
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -21,7 +23,6 @@ public class GridView extends VerticalLayout {
     Grid<ZWW_Authority> berechtigungsTabelle = new Grid<>();
 
     public GridView(SecurityService securityService, ZWW_Authorities_Service zww_authorities_service) {
-        setSizeFull();
         List<ZWW_Authority> zwwAuthorityList = zww_authorities_service.findAllAuthorities();
 
         Collection<? extends GrantedAuthority> userAuthorities = securityService.getLoggedInUser().getUsers_authorities(); // your Collection of GrantedAuthorities
@@ -37,10 +38,13 @@ public class GridView extends VerticalLayout {
                 }
             }
         }
-
+        setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
+        HorizontalLayout passwordexpiredate = new HorizontalLayout();
+        passwordexpiredate.add(new H4("Dein Passwort läuft am " + securityService.getLoggedInUser().getPasswordExpireDate()));
+        add(passwordexpiredate);
         berechtigungsTabelle.setItems(matchingAuthorities);
         berechtigungsTabelle.addClassName("table-users-authorities");
         berechtigungsTabelle.addColumn(ZWW_Authority::getName).setHeader("Name").setSortable(true).setComparator(ZWW_Authority::getName);
