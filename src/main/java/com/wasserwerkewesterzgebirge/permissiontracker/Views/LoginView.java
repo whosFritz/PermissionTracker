@@ -1,7 +1,6 @@
 package com.wasserwerkewesterzgebirge.permissiontracker.Views;
 
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.notification.Notification;
@@ -50,14 +49,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
 
         loginForm.setAction("login");
         loginForm.setForgotPasswordButtonVisible(true);
-        loginForm.addForgotPasswordListener(event -> Notification.show("Wenden Sie sich dafür bitte an Ihren Administrator.❤\uFE0F"));
+        loginForm.addForgotPasswordListener(event -> Notification.show("Wenden Sie sich dafür bitte an Ihren Administrator.❤️"));
         loginForm.setI18n(i18n);
 
-        Span info = new Span("Diese Anwendung wird ausschließlich für kommerzielle Zwecke genutzt!");
         add(
                 logoImage,
-                loginForm,
-                info
+                loginForm
         );
     }
 
