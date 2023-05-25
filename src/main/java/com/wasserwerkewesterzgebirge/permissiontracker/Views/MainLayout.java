@@ -85,7 +85,6 @@ public class MainLayout extends AppLayout {
         tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
         tabs.setId("tabs");
         tabs.add(createMenuItems());
-        ;
         return tabs;
     }
 
