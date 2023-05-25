@@ -37,7 +37,7 @@ public class SessionConfig implements VaadinServiceInitListener, SystemMessagesP
         messages.setSessionExpiredCaption("Sitzung abgelaufen");
         messages.setInternalErrorCaption("Interner Serverfehler");
         messages.setInternalErrorMessage("Ein interner Fehler ist aufgetreten. Bitte benachrichtigen Sie die technischen Administratoren!");
-        messages.setSessionExpiredURL("http://localhost:8081/login");
+        messages.setSessionExpiredURL("http://permission-track.ww-szb.local:8081/login");
         logger.info("Session Expired");
         return messages;
     }

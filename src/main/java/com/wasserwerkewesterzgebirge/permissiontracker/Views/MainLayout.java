@@ -103,6 +103,7 @@ public class MainLayout extends AppLayout {
             logger.info("Benutzer wurde ausgeloggt: " + securityService.getLoggedInUser().getGanzer_Name());
             securityService.logout();
         });
+        logoutButton.addClassName("logout-button");
         logoutButton.setTooltipText("Hier kannst du dich ausloggen.");
 
         HorizontalLayout header = new HorizontalLayout(

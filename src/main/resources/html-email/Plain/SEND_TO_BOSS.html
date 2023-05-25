@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <style>
+        /* Add custom classes and styles that you want inlined here */
+    </style>
+    <title>Email</title>
+</head>
+<body class="bg-light">
+<preview>Neue Berechtigungsanfrage</preview>
+<div class="container">
+    <div class="card my-10">
+        <div class="card-body">
+            <h1 class="h3 mb-2">Berechtigungsanfrage</h1>
+            <h5 class="mb-2 text-teal-700">
+                %Antragsteller hat Berechtigungen angefragt
+            </h5>
+            <h5 class="py-3">Datum: %Datum</h5>
+            <h5>ID: %ID</h5>
+            <hr/>
+            <div class="space-y-3">
+                <p>Hallo %Vorgesetzter,</p>
+                <p>
+                    ihr Mitarbeiter %Antragsteller erbittet die Freigabe folgender
+                    Berechtigungen. 🤨
+                </p>
+                <table class="table table-striped thead-default table-bordered">
+                    %Tabelle
+                </table>
+                <hr/>
+                <h6>Anmerkungen:</h6>
+                <p>%Sonstiges</p>
+                <hr/>
+                <p>
+                    Wenn Sie die Berechtigung erteilen möchten, klicken Sie bitte auf
+                    "Berechtigung erteilen". 👍
+                </p>
+                <p>
+                    <a class="btn btn-success btn-sm" href="%link1"
+                    >Berechtigung erteilen</a
+                    >
+                </p>
+                <hr/>
+                <p>
+                    Wenn Sie die Berechtigung nicht erteilen möchten, klicken Sie
+                    bitte auf "Berechtigung nicht erteilen". 👎
+                </p>
+                <p>
+                    <a class="btn btn-danger btn-sm" href="%link2"
+                    >Berechtigung nicht erteilen</a
+                    >
+                </p>
+                <hr/>
+                <p>Viele Grüße</p>
+                <p>PermissionTracker</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

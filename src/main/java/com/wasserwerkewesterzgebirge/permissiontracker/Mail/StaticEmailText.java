@@ -3135,7 +3135,7 @@ public class StaticEmailText {
             "                                                <tbody>" +
             "                                                  <tr>" +
             "                                                    <td style=\"line-height: 24px; font-size: 16px; border-radius: 6px; margin: 0; border-color: #0d6efd;\" align=\"center\" bgcolor=\"transparent\">" +
-            "                                                      <a href=\"http://localhost:8081\" style=\"color: #0d6efd; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 6px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: transparent; padding: 8px 12px; border: 1px solid #0d6efd;\">Neue Berechtigung anfragen</a>" +
+            "                                                      <a href=\"http://permission-track.ww-szb.local:8081\" style=\"color: #0d6efd; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 6px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: transparent; padding: 8px 12px; border: 1px solid #0d6efd;\">Neue Berechtigung anfragen</a>" +
             "                                                    </td>" +
             "                                                  </tr>" +
             "                                                </tbody>" +

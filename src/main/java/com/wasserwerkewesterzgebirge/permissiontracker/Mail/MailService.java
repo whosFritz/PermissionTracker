@@ -62,7 +62,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email Quittung versendet: " + anfrage);
+        logger.info("Email Quittung versendet: " + anfrage.getId());
     }
 
     public void sendMailFirstBoss(PermissionRequest anfrage) throws MessagingException {
@@ -88,7 +88,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an ersten Boss: " + anfrage);
+        logger.info("Email an ersten Boss: " + anfrage.getId());
     }
 
 
@@ -128,7 +128,7 @@ public class MailService {
         if (whichDateToSet(anfrage) == 4)
             anfrage.setDatumBoss4(datum);
         permissionRequestService.saveONE_PermissionRequest(anfrage);
-        logger.info("Email an nächsten Vorgesetzten geschickt: " + anfrage);
+        logger.info("Email an nächsten Vorgesetzten geschickt: " + anfrage.getId());
     }
 
     public void sendApproveBossInfo(PermissionRequest anfrage, String datum) throws MessagingException {
@@ -151,7 +151,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Zwischenvorgesetzter, dass er bestätigt hat: " + anfrage);
+        logger.info("Email an Zwischenvorgesetzter, dass er bestätigt hat: " + anfrage.getId());
     }
 
 
@@ -175,7 +175,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Mitarbeiter, dass sein Zwischenvorgesetzter bestätigt hat: " + anfrage);
+        logger.info("Email an Mitarbeiter, dass sein Zwischenvorgesetzter die Anfrage bestätigt hat: " + anfrage.getId());
     }
 
     public void sendMailToEDV(PermissionRequest anfrage, String datum) throws MessagingException {
@@ -197,7 +197,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Mitarbeiter der EDV, dass Änderungen vorgenommen wreden können: " + anfrage);
+        logger.info("Email an Mitarbeiter der EDV, dass Änderungen vorgenommen werden können: " + anfrage.getId());
     }
 
     public void sendFinalMailToEmployee(PermissionRequest anfrage, String datum) throws MessagingException {
@@ -219,7 +219,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Mitarbeiter, dass komplett genehmigt wurde: " + anfrage);
+        logger.info("Email an Mitarbeiter, dass komplett genehmigt wurde: " + anfrage.getId());
     }
 
     public void sendFinalMailBossApproveInfo(PermissionRequest anfrage, String datum) throws MessagingException {
@@ -251,7 +251,7 @@ public class MailService {
         if (whichDateToSet(anfrage) == 4)
             anfrage.setDatumBoss4(datum);
         anfrage.setStatus("Genehmigt");
-        logger.info("Email an GF, dass er komplett genehmigt hat: " + anfrage);
+        logger.info("Email an GF, dass er komplett genehmigt hat: " + anfrage.getId());
         permissionRequestService.saveONE_PermissionRequest(anfrage);
     }
 
@@ -276,7 +276,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Mitarbeiter, dass seine Anfrage abgelehnt wurde: " + anfrage);
+        logger.info("Email an Mitarbeiter, dass seine Anfrage abgelehnt wurde: " + anfrage.getId());
     }
 
     public void sendCancelInfoEmployee(PermissionRequest anfrage, String datum) throws MessagingException {
@@ -299,7 +299,7 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        logger.info("Email an Vorgesetzten, dass er die Anfrage abgelehnt hat: " + anfrage);
+        logger.info("Email an Vorgesetzten, dass er die Anfrage abgelehnt hat: " + anfrage.getId());
     }
 
     public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String msg) {
@@ -311,8 +311,8 @@ public class MailService {
     }
 
     private String createDynamicMailContent_BossToApproveRequest(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges, String approveCode, String disapproveCode) {
-        String approveUrL = "http://localhost:8081/approve?code=" + approveCode;
-        String disapproveUrL = "http://localhost:8081/disapprove?code=" + disapproveCode;
+        String approveUrL = "http://permission-track.ww-szb.local:8081/approve?code=" + approveCode;
+        String disapproveUrL = "http://permission-track.ww-szb.local:8081/disapprove?code=" + disapproveCode;
         String msg = StaticEmailText.SEND_TO_BOSS;
         msg = msg.replaceAll("%ID", id.toString());
         msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
