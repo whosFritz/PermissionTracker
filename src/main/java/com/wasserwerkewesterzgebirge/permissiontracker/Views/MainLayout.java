@@ -85,10 +85,11 @@ public class MainLayout extends AppLayout {
         tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
         tabs.setId("tabs");
         tabs.add(createMenuItems());
+        ;
         return tabs;
     }
 
-    private Component[] createMenuItems() {
+    private Tab[] createMenuItems() {
         return new Tab[]{
                 createTab("Infos über dich", VaadinIcon.USER, InformationView.class),
                 createTab("Neue Berechtigungen anfragen", VaadinIcon.PLUS, PermissionRequestView.class),

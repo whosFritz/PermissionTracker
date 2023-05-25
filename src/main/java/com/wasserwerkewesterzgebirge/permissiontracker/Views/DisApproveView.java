@@ -62,7 +62,7 @@ public class DisApproveView extends Composite implements BeforeEnterObserver {
                 StreamResource logoStream = new StreamResource("exploding-head-emoji.gif", () -> getClass().getResourceAsStream("/static/gifs/exploding-head-emoji.gif"));
                 Image emojiGif = new Image(logoStream, "exploding-head-emoji.gif");
                 layout.add(emojiGif, new H3("Anfrage wurde schon bearbeitet oder existiert nicht"));
-                logger.info("Kein Objekt gefunden zum Ablehnen mit ID: " + anfrage.getId());
+                logger.info("Kein Objekt gefunden zum Ablehnen mit No-Code");
             }
         } catch (Exception e) {
             StreamResource logoStream = new StreamResource("emoji-sad-animated.gif", () -> getClass().getResourceAsStream("/static/gifs/emoji-sad-animated.gif"));
