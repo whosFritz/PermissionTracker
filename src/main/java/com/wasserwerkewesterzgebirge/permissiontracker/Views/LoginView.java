@@ -11,13 +11,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Route("login")
 @PageTitle("Login | PermTracker")
 @AnonymousAllowed
 public class LoginView extends VerticalLayout implements BeforeEnterListener {
-
     private final LoginForm loginForm = new LoginForm();
+    Logger logger = LoggerFactory.getLogger(LoginView.class);
 
     public LoginView() {
         addClassName("login-view");
@@ -25,9 +27,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        StreamResource logoStream = new StreamResource("icon.png", () -> getClass().getResourceAsStream("/static/img/Icon.png"));
+        StreamResource logoStream = new StreamResource("Logo.png", () -> getClass().getResourceAsStream("/static/img/Logo.png"));
         Image logoImage = new Image(logoStream, "Logo");
-        logoImage.setAlt("LOGO");
+        logoImage.setAlt("Logo");
         logoImage.setWidth("20%");
         logoImage.setHeight("auto");
 
@@ -50,6 +52,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
         loginForm.setAction("login");
         loginForm.setForgotPasswordButtonVisible(true);
         loginForm.addForgotPasswordListener(event -> Notification.show("Wenden Sie sich dafür bitte an Ihren Administrator.❤️"));
+        loginForm.addLoginListener(event -> logger.info("User versuchte sich einzuloggen mit Benutzername: " + event.getUsername()));
         loginForm.setI18n(i18n);
 
         add(

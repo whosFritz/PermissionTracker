@@ -22,6 +22,7 @@ public class Logged_in_User extends LdapUserDetailsImpl {
     private LdapUser boss1;
     private LdapUser boss2;
     private LdapUser boss3;
+    private LdapUser boss4;
 }
 
 

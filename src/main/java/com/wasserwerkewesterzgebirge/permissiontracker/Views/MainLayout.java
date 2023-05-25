@@ -100,7 +100,7 @@ public class MainLayout extends AppLayout {
         H2 logo = new H2("PermissionTracker");
         logo.addClassNames("text-l", "m-m");
         Button logoutButton = new Button("Logout", event -> {
-            logger.info("Benutzer wurde ausgeloggt: " + securityService.getLoggedInUser());
+            logger.info("Benutzer wurde ausgeloggt: " + securityService.getLoggedInUser().getGanzer_Name());
             securityService.logout();
         });
         logoutButton.setTooltipText("Hier kannst du dich ausloggen.");

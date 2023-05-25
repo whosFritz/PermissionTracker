@@ -15,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends VaadinWebSecurity {
+
     @Value("${ldap.server.url}")
     private String url;
     @Value("${ldap.server.domain}")
@@ -22,7 +23,9 @@ public class WebSecurityConfig extends VaadinWebSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/public/**"))
+        http.
+                authorizeHttpRequests()
+                .requestMatchers(new AntPathRequestMatcher("/public/**"))
                 .permitAll();
         super.configure(http);
         setLoginView(http, LoginView.class);
@@ -30,7 +33,6 @@ public class WebSecurityConfig extends VaadinWebSecurity {
 
     @Override
     protected void configure(WebSecurity web) throws Exception {
-        // Customize your WebSecurity configuration.
         super.configure(web);
     }
 

@@ -148,6 +148,12 @@ public class PermissionRequestView extends VerticalLayout {
                     downPointingArrow4.setHeight("5%");
                     requestFlow.add(downPointingArrow4);
                     requestFlow.add(new H3(securityService.getLoggedInUser().getBoss3().getDisplayName()));
+                    if (securityService.getLoggedInUser().getBoss4() != null) {
+                        Image downPointingArrow5 = new Image(ArrowStream, "Arrow");
+                        downPointingArrow5.setHeight("5%");
+                        requestFlow.add(downPointingArrow5);
+                        requestFlow.add(new H3(securityService.getLoggedInUser().getBoss4().getDisplayName()));
+                    }
                 }
             }
         }
@@ -159,7 +165,19 @@ public class PermissionRequestView extends VerticalLayout {
             String yescode = RandomStringUtils.randomAlphanumeric(32);
             String nocode = RandomStringUtils.randomAlphanumeric(32);
             // Speichern dann laden und senden
-            permissionRequestService.saveONE_PermissionRequest(new PermissionRequest(securityService.getLoggedInUser().getGanzer_Name(), securityService.getLoggedInUser().getMail() != null ? securityService.getLoggedInUser().getMail() : null, mailService.gruppenObjectToDatabaseString(tableToChooseFrom.getSelectedItems().stream().toList()), sonstiges.getValue(), antragstellungsdatum, "in Bearbeitung", 0, securityService.getLoggedInUser().getCount_bosses(), securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getDisplayName() : null, securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getEmail() : null, securityService.getLoggedInUser().getBoss2() != null ? securityService.getLoggedInUser().getBoss2().getDisplayName() : null, securityService.getLoggedInUser().getBoss2() != null ? securityService.getLoggedInUser().getBoss2().getEmail() : null, securityService.getLoggedInUser().getBoss3() != null ? securityService.getLoggedInUser().getBoss3().getDisplayName() : null, securityService.getLoggedInUser().getBoss3() != null ? securityService.getLoggedInUser().getBoss3().getEmail() : null, yescode, nocode));
+            permissionRequestService.saveONE_PermissionRequest(new PermissionRequest
+                    (securityService.getLoggedInUser().getGanzer_Name(),
+                            securityService.getLoggedInUser().getMail() != null ? securityService.getLoggedInUser().getMail() : null, mailService.gruppenObjectToDatabaseString(tableToChooseFrom.getSelectedItems().stream().toList()), sonstiges.getValue(), antragstellungsdatum, "in Bearbeitung", 0, securityService.getLoggedInUser().getCount_bosses(),
+                            securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getDisplayName() : null,
+                            securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getEmail() : null,
+                            securityService.getLoggedInUser().getBoss2() != null ? securityService.getLoggedInUser().getBoss2().getDisplayName() : null,
+                            securityService.getLoggedInUser().getBoss2() != null ? securityService.getLoggedInUser().getBoss2().getEmail() : null,
+                            securityService.getLoggedInUser().getBoss3() != null ? securityService.getLoggedInUser().getBoss3().getDisplayName() : null,
+                            securityService.getLoggedInUser().getBoss3() != null ? securityService.getLoggedInUser().getBoss3().getEmail() : null,
+                            securityService.getLoggedInUser().getBoss4() != null ? securityService.getLoggedInUser().getBoss4().getDisplayName() : null,
+                            securityService.getLoggedInUser().getBoss4() != null ? securityService.getLoggedInUser().getBoss4().getEmail() : null,
+                            yescode,
+                            nocode));
             // Gespeichert
             PermissionRequest geladenePermissionRequest = permissionRequestService.findByYesCode(yescode);
             // Mail an mitarbeiter Quittung
