@@ -90,7 +90,7 @@ public class MainLayout extends AppLayout {
 
     private Component[] createMenuItems() {
         return new Tab[]{
-                createTab("Infos über dich", VaadinIcon.USER, GridView.class),
+                createTab("Infos über dich", VaadinIcon.USER, InformationView.class),
                 createTab("Neue Berechtigungen anfragen", VaadinIcon.PLUS, PermissionRequestView.class),
                 createTab("About this WebApp", VaadinIcon.INFO, AboutView.class)
         };

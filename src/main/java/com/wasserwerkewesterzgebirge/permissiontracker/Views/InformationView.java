@@ -19,10 +19,10 @@ import java.util.List;
 @PageTitle("Info Seite")
 @Route(value = "", layout = MainLayout.class)
 @PermitAll
-public class GridView extends VerticalLayout {
+public class InformationView extends VerticalLayout {
     Grid<ZWW_Authority> berechtigungsTabelle = new Grid<>();
 
-    public GridView(SecurityService securityService, ZWW_Authorities_Service zww_authorities_service) {
+    public InformationView(SecurityService securityService, ZWW_Authorities_Service zww_authorities_service) {
         List<ZWW_Authority> zwwAuthorityList = zww_authorities_service.findAllAuthorities();
 
         Collection<? extends GrantedAuthority> userAuthorities = securityService.getLoggedInUser().getUsers_authorities(); // your Collection of GrantedAuthorities
