@@ -5,5 +5,8 @@
 |  |      |  |____ |  |\  \----.|  |  |  | |  | .----)   |   .----)   |   |  | |  `--'  | |  |\   |     |  |     |  |\  \----./  _____  \ |  `----.|  .  \  |  |____ |  |\  \----.
 | _|      |_______|| _| `._____||__|  |__| |__| |_______/    |_______/    |__|  \______/  |__| \__|     |__|     | _| `._____/__/     \__\ \______||__|\__\ |_______|| _| `._____|
 
-${application.title} ${application.version}
+${info.app.name}
+Version: ${info.app.version}
+Developed by ${info.app.developer.name}
+${info.app.developer.email}
 Powered by Spring Boot ${spring-boot.version}

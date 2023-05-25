@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@PWA(name = "Permission Tracker", shortName = "P.T.", description = "FullStack WebApp where users can request permissions from their supervisor")
+@PWA(name = "Permission Tracker", shortName = "PermTrack")
 @Theme("permission-tracker")
 public class PermissiontrackerApplication implements AppShellConfigurator {
 
