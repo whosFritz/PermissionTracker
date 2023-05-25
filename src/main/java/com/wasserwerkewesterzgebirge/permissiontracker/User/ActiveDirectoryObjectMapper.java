@@ -77,6 +77,11 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
                         // Dritte Ebene
                         loggedInUser.setBoss3(findLdapUser(loggedInUser.getBoss2().getChef())); // chef vom chef vom chef
                         bossCount += 1;
+                        if (!loggedInUser.getBoss3().getDisplayName().equals(GF_NAME)) {
+                            // Vierte Ebene
+                            loggedInUser.setBoss4(findLdapUser(loggedInUser.getBoss3().getChef())); // chef vom chef vom chef vom chef
+                            bossCount += 1;
+                        }
                     }
                 }
             }

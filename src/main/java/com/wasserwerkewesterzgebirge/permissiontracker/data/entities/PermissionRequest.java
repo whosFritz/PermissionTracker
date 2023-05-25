@@ -32,6 +32,8 @@ public class PermissionRequest {
     private String datumBoss2;
     @Column(name = "Datum3")
     private String datumBoss3;
+    @Column(name = "Datum4")
+    private String datumBoss4;
 
     @Column(name = "status")
     private String status;
@@ -55,12 +57,17 @@ public class PermissionRequest {
     @Column(name = "Boss3Mail")
     private String boss3Mail;
 
+    @Column(name = "Boss4Name")
+    private String boss4DisplayName;
+    @Column(name = "Boss4Mail")
+    private String boss4Mail;
+
     @Column(name = "yescode")
     private String yesCode;
     @Column(name = "nocode")
     private String noCode;
 
-    public PermissionRequest(String requestingPerson, String requestersMail, String requestedPermissions, String sonstiges, String datumRequest, String status, int approvedLevels, int toBeApprovedLevels, String boss1DisplayName, String boss1Mail, String boss2DisplayName, String boss2Mail, String boss3DisplayName, String boss3Mail, String yesCode, String noCode) {
+    public PermissionRequest(String requestingPerson, String requestersMail, String requestedPermissions, String sonstiges, String datumRequest, String status, int approvedLevels, int toBeApprovedLevels, String boss1DisplayName, String boss1Mail, String boss2DisplayName, String boss2Mail, String boss3DisplayName, String boss3Mail, String boss4DisplayName, String boss4Mail, String yesCode, String noCode) {
         this.requestingPerson = requestingPerson;
         this.requestersMail = requestersMail;
         this.requestedPermissions = requestedPermissions;
@@ -75,6 +82,8 @@ public class PermissionRequest {
         this.boss2Mail = boss2Mail;
         this.boss3DisplayName = boss3DisplayName;
         this.boss3Mail = boss3Mail;
+        this.boss4DisplayName = boss4DisplayName;
+        this.boss4Mail = boss4Mail;
         this.yesCode = yesCode;
         this.noCode = noCode;
     }

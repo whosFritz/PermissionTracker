@@ -118,11 +118,15 @@ public class MailService {
 
         mimeMessage.setContent(multipart);
         Transport.send(mimeMessage);
-        if (whichDateToSet(anfrage) == 1) {
+
+        if (whichDateToSet(anfrage) == 1)
             anfrage.setDatumBoss1(datum);
-        } else {
+        if (whichDateToSet(anfrage) == 2)
             anfrage.setDatumBoss2(datum);
-        }
+        if (whichDateToSet(anfrage) == 3)
+            anfrage.setDatumBoss3(datum);
+        if (whichDateToSet(anfrage) == 4)
+            anfrage.setDatumBoss4(datum);
         permissionRequestService.saveONE_PermissionRequest(anfrage);
         logger.info("Email an nächsten Vorgesetzten geschickt: " + anfrage);
     }
@@ -244,6 +248,8 @@ public class MailService {
             anfrage.setDatumBoss2(datum);
         if (whichDateToSet(anfrage) == 3)
             anfrage.setDatumBoss3(datum);
+        if (whichDateToSet(anfrage) == 4)
+            anfrage.setDatumBoss4(datum);
         anfrage.setStatus("Genehmigt");
         logger.info("Email an GF, dass er komplett genehmigt hat: " + anfrage);
         permissionRequestService.saveONE_PermissionRequest(anfrage);
@@ -298,9 +304,9 @@ public class MailService {
 
     public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String msg) {
         msg = msg.replaceAll("%Antragsteller", antragsteller);
-        msg = msg.replaceFirst("%Vorgesetzter", ablehner); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum);
-        msg = msg.replaceFirst("%ID", id.toString());
+        msg = msg.replaceAll("%Vorgesetzter", ablehner); // Vorgesetzter
+        msg = msg.replaceAll("%Datum", datum);
+        msg = msg.replaceAll("%ID", id.toString());
         return msg;
     }
 
@@ -308,57 +314,54 @@ public class MailService {
         String approveUrL = "http://localhost:8081/approve?code=" + approveCode;
         String disapproveUrL = "http://localhost:8081/disapprove?code=" + disapproveCode;
         String msg = StaticEmailText.SEND_TO_BOSS;
-        msg = msg.replaceFirst("%ID", id.toString());
+        msg = msg.replaceAll("%ID", id.toString());
         msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceFirst("%Vorgesetzter", vorgesetzter); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum); // Datum
-        msg = msg.replaceFirst("%Tabelle", HTML_table_builder(gruppen)); // table
-        msg = msg.replaceFirst("%Sonstiges", sonstiges);
-        msg = msg.replaceFirst("%link1", approveUrL); // link1
-        msg = msg.replaceFirst("%link2", disapproveUrL); // link2
+        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter); // Vorgesetzter
+        msg = msg.replaceAll("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Sonstiges", sonstiges);
+        msg = msg.replaceAll("%link1", approveUrL); // link1
+        msg = msg.replaceAll("%link2", disapproveUrL); // link2
         return msg;
     }
 
     private String createDynamicMailContent_ApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum, String msg) {
         msg = msg.replaceAll("%Antragsteller", requestingPerson);
-        msg = msg.replaceFirst("%Vorgesetzter", approver);
-        msg = msg.replaceFirst("%BossVonBoss", nextapprover);
-        msg = msg.replaceFirst("%Datum", datum);
-        msg = msg.replaceFirst("%ID", id.toString());
+        msg = msg.replaceAll("%Vorgesetzter", approver);
+        msg = msg.replaceAll("%BossVonBoss", nextapprover);
+        msg = msg.replaceAll("%Datum", datum);
+        msg = msg.replaceAll("%ID", id.toString());
         return msg;
     }
 
     private String createDynamicMailContent_Quittung(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges) {
         String msg = StaticEmailText.QUITTUNG_FOR_EMPLOYEE;
-        try {
-            msg = msg.replaceFirst("%ID", id.toString());
-            msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-            msg = msg.replaceFirst("%Vorgesetzter", vorgesetzter); // Vorgesetzter
-            msg = msg.replaceFirst("%Datum", datum); // Datum
-            msg = msg.replaceFirst("%Tabelle", HTML_table_builder(gruppen)); // table
-            msg = msg.replaceFirst("%Sonstiges", sonstiges);
-        } catch (Exception e) {
-            logger.error("Fehler bei der Quittungserstellung", e);
-        }
+
+        msg = msg.replaceAll("%ID", id.toString());
+        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
+        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter); // Vorgesetzter
+        msg = msg.replaceAll("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Sonstiges", sonstiges);
         return msg;
     }
 
     private String createDynamicMailContent_FinalApproveInfo(Long id, String antragsteller, String datum, String msg) {
-        msg = msg.replaceFirst("%ID", id.toString());
+        msg = msg.replaceAll("%ID", id.toString());
         msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceFirst("%Vorgesetzter", GF_NAME); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Vorgesetzter", GF_NAME); // Vorgesetzter
+        msg = msg.replaceAll("%Datum", datum); // Datum
         return msg;
     }
 
     private String createDynamicMailContent_EDV(Long id, String antragsteller, String datum, String sonstiges, String gruppen) {
         String msg = StaticEmailText.EDV_MAIL;
-        msg = msg.replaceFirst("%ID", id.toString());
+        msg = msg.replaceAll("%ID", id.toString());
         msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceFirst("%Vorgesetzter", GF_NAME); // Vorgesetzter
-        msg = msg.replaceFirst("%Datum", datum); // Datum
-        msg = msg.replaceFirst("%Sonstiges", sonstiges);
-        msg = msg.replaceFirst("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Vorgesetzter", GF_NAME); // Vorgesetzter
+        msg = msg.replaceAll("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Sonstiges", sonstiges);
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
         return msg;
     }
 
@@ -415,20 +418,23 @@ public class MailService {
         String result = "testes@wasserwerke-westerzgebirge.de";
         if (anfrage.getApprovedLevels() == 1) result = anfrage.getBoss2Mail();
         if (anfrage.getApprovedLevels() == 2) result = anfrage.getBoss3Mail();
+        if (anfrage.getApprovedLevels() == 3) result = anfrage.getBoss4Mail();
         return result;
     }
 
     private String whichBossToSendNext_Name(PermissionRequest anfrage) {
-        String result = "";
+        String result = "Nächste Boss Name";
         if (anfrage.getApprovedLevels() == 1) result = anfrage.getBoss2DisplayName();
         if (anfrage.getApprovedLevels() == 2) result = anfrage.getBoss3DisplayName();
+        if (anfrage.getApprovedLevels() == 3) result = anfrage.getBoss4DisplayName();
         return result;
     }
 
     private int whichDateToSet(PermissionRequest anfrage) {
-        int result = 3;
+        int result = 4;
         if (anfrage.getApprovedLevels() == 1) result = 1;
         if (anfrage.getApprovedLevels() == 2) result = 2;
+        if (anfrage.getApprovedLevels() == 3) result = 3;
         return result;
     }
 
@@ -443,6 +449,7 @@ public class MailService {
         String approver = "Zustimmer_mail";
         if (anfrage.getApprovedLevels() == 1) approver = anfrage.getBoss1Mail();
         if (anfrage.getApprovedLevels() == 2) approver = anfrage.getBoss2Mail();
+        if (anfrage.getApprovedLevels() == 3) approver = anfrage.getBoss3Mail();
         return approver;
     }
 
@@ -451,6 +458,7 @@ public class MailService {
         if (anfrage.getApprovedLevels() == 0) disapprover_name = anfrage.getBoss1DisplayName();
         if (anfrage.getApprovedLevels() == 1) disapprover_name = anfrage.getBoss2DisplayName();
         if (anfrage.getApprovedLevels() == 2) disapprover_name = anfrage.getBoss3DisplayName();
+        if (anfrage.getApprovedLevels() == 3) disapprover_name = anfrage.getBoss4DisplayName();
         return disapprover_name;
     }
 
@@ -459,6 +467,7 @@ public class MailService {
         if (anfrage.getApprovedLevels() == 0) disapprover_mail = anfrage.getBoss1Mail();
         if (anfrage.getApprovedLevels() == 1) disapprover_mail = anfrage.getBoss2Mail();
         if (anfrage.getApprovedLevels() == 2) disapprover_mail = anfrage.getBoss3Mail();
+        if (anfrage.getApprovedLevels() == 3) disapprover_mail = anfrage.getBoss4Mail();
         return disapprover_mail;
     }
 }
