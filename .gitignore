@@ -10,7 +10,7 @@ src/main/resources/application-dev.properties
 src/main/resources/application-prod.properties
 src/main/resources/users
 permissiontracker.log
-src/main/java/com/wasserwerkewesterzgebirge/permissiontracker/data/fallsMalAllesFlötenGeht.txt
+src/main/resources/alteGruppen.txt
 
 ### STS ###
 .apt_generated

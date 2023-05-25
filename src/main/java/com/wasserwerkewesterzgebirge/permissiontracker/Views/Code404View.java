@@ -7,7 +7,7 @@ import com.vaadin.flow.server.StreamResource;
 import jakarta.servlet.http.HttpServletResponse;
 
 @ParentLayout(MainLayout.class)
-public class ErrorController
+public class Code404View
         extends RouteNotFoundError {
 
     @Override
