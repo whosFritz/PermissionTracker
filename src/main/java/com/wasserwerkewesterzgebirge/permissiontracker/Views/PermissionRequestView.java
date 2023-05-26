@@ -80,7 +80,7 @@ public class PermissionRequestView extends VerticalLayout {
         sonstiges = new TextArea();
         sonstiges.setLabel("Anmerkungen");
         sonstiges.setWidthFull();
-        sonstiges.setPlaceholder("Hier kannst du deinen Vorgesetzten oder dem System Anmerkungen hinterlassen.");
+        sonstiges.setPlaceholder("Sonstiges");
 
         ConfirmDialog dialog = new ConfirmDialog();
         dialog.setHeader("Anfrage abschicken");
@@ -116,7 +116,7 @@ public class PermissionRequestView extends VerticalLayout {
 
     private Component getToolBar() {
         filterText = new TextField();
-        filterText.setPlaceholder("Filter nach Namen...");
+        filterText.setPlaceholder("Suche anhand des Namens...");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(event -> updateList());
@@ -167,7 +167,12 @@ public class PermissionRequestView extends VerticalLayout {
             // Speichern dann laden und senden
             permissionRequestService.saveONE_PermissionRequest(new PermissionRequest
                     (securityService.getLoggedInUser().getGanzer_Name(),
-                            securityService.getLoggedInUser().getMail() != null ? securityService.getLoggedInUser().getMail() : null, mailService.gruppenObjectToDatabaseString(tableToChooseFrom.getSelectedItems().stream().toList()), sonstiges.getValue(), antragstellungsdatum, "in Bearbeitung", 0, securityService.getLoggedInUser().getCount_bosses(),
+                            securityService.getLoggedInUser().getMail() != null ? securityService.getLoggedInUser().getMail() : null,
+                            mailService.gruppenObjectToDatabaseString(tableToChooseFrom.getSelectedItems().stream().toList()),
+                            sonstiges.getValue(),
+                            antragstellungsdatum, "in Bearbeitung",
+                            0,
+                            securityService.getLoggedInUser().getCount_bosses(),
                             securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getDisplayName() : null,
                             securityService.getLoggedInUser().getBoss1() != null ? securityService.getLoggedInUser().getBoss1().getEmail() : null,
                             securityService.getLoggedInUser().getBoss2() != null ? securityService.getLoggedInUser().getBoss2().getDisplayName() : null,

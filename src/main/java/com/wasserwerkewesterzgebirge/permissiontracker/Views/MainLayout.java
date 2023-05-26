@@ -23,7 +23,17 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-
+/**
+ * The main view is a top-level placeholder for other views.
+ * <p>
+ * See {@link com.vaadin.flow.component.applayout.AppLayout},
+ * {@link com.vaadin.flow.component.applayout.DrawerToggle},
+ * {@link com.vaadin.flow.component.applayout.AppLayout}, {@link Tabs} and
+ * {@link Tab}.
+ * <p>
+ * The menu items are added to the {@link com.vaadin.flow.component.applayout.AppLayout} component.
+ * The menu links are {@link RouterLink} components.
+ */
 public class MainLayout extends AppLayout {
     private final SecurityService securityService;
     private final Tabs menu;
@@ -38,6 +48,14 @@ public class MainLayout extends AppLayout {
 
     }
 
+    /**
+     * Creates a tab with a router link.
+     *
+     * @param text             the text to display in the tab
+     * @param icon             the icon to display in the tab
+     * @param navigationTarget the navigation target for the router link inside the tab
+     * @return a new tab
+     */
     private static Tab createTab(String text, VaadinIcon icon, Class<? extends Component> navigationTarget) {
         final Tab tab = new Tab();
         RouterLink routerLink = new RouterLink();
@@ -58,7 +76,12 @@ public class MainLayout extends AppLayout {
         return tab;
     }
 
-
+    /**
+     * Creates the content of the drawer - a list of menu items.
+     *
+     * @param menu the menu
+     * @return the content of the drawer
+     */
     private Component createDrawerContent(Tabs menu) {
         VerticalLayout layout = new VerticalLayout();
 
@@ -79,6 +102,12 @@ public class MainLayout extends AppLayout {
         return layout;
     }
 
+
+    /**
+     * Creates the tabs which are the menu items of the application.
+     *
+     * @return the tabs
+     */
     private Tabs createMenu() {
         final Tabs tabs = new Tabs();
         tabs.setOrientation(Tabs.Orientation.VERTICAL);

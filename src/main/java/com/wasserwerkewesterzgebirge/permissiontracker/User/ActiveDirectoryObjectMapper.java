@@ -21,10 +21,13 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
     @Autowired
     private LdapTemplate ldapTemplate;
 
+
     public String calculatePasswordExpirationDate(String pwdLastSet) {
+
+        // Get the current date
+        Date currentDate = new Date();
         // Replace this with the actual pwdLastSet value
         int maxPasswordAgeInDays = 90; // Replace this with the maximum password age in your Active Directory
-
         // Convert pwdLastSet to milliseconds
         long pwdLastSetMillis = Long.parseLong(pwdLastSet) / 10000 - 11644473600000L;
 
@@ -37,12 +40,18 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
 
         // Get the expiration date
         Date expirationDate = calendar.getTime();
-
-        return new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY).format(expirationDate);
+        // Compare expiration date with the current date
+        boolean isExpired = expirationDate.before(currentDate);
+        System.out.println(expirationDate);
+        if (isExpired) {
+            return "abgelaufen";
+        } else {
+            return new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY).format(expirationDate);
+        }
     }
 
     public LdapUser findLdapUser(String dn) {
-        return (LdapUser) ldapTemplate.lookup(dn, new CustomAttributesMapper());
+        return ldapTemplate.lookup(dn, new CustomAttributesMapper());
     }
 
 
@@ -61,7 +70,8 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
         loggedInUser.setMail(ctx.getStringAttribute("mail")); // Email
         loggedInUser.setUsers_authorities(userDetails.getAuthorities()); // [Sicherheitsgruppen]
         loggedInUser.setDN(ctx.getStringAttribute("distinguishedName")); // CN=DisplayName, OU=...
-        loggedInUser.setPasswordExpireDate(calculatePasswordExpirationDate(ctx.getStringAttribute("pwdLastSet")));
+
+//        loggedInUser.setPasswordExpireDate(calculatePasswordExpirationDate(ctx.getStringAttribute("pwdLastSet")));
 
 
         // wenn chef null dann setzt er die eigene dn ein, also ein loop tritt auf

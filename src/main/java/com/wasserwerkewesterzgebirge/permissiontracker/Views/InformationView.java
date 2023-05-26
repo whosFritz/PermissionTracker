@@ -1,8 +1,6 @@
 package com.wasserwerkewesterzgebirge.permissiontracker.Views;
 
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H4;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -42,9 +40,6 @@ public class InformationView extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        HorizontalLayout passwordexpiredate = new HorizontalLayout();
-        passwordexpiredate.add(new H4("Dein Passwort läuft am " + securityService.getLoggedInUser().getPasswordExpireDate()));
-        add(passwordexpiredate);
         berechtigungsTabelle.setItems(matchingAuthorities);
         berechtigungsTabelle.addClassName("table-users-authorities");
         berechtigungsTabelle.addColumn(ZWW_Authority::getName).setHeader("Name").setSortable(true).setComparator(ZWW_Authority::getName);
