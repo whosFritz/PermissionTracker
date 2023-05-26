@@ -63,7 +63,7 @@ public class MainLayout extends AppLayout {
         linkContent.addClassName("link-content");
 
         Icon linkIcon = new Icon(icon);
-        linkIcon.setSize("1.5em"); // Adjust the icon size as needed
+        linkIcon.setSize("1.5em");
         linkContent.add(linkIcon);
 
 
@@ -85,19 +85,16 @@ public class MainLayout extends AppLayout {
     private Component createDrawerContent(Tabs menu) {
         VerticalLayout layout = new VerticalLayout();
 
-        // Configure styling for the drawer
         layout.setSizeFull();
         layout.setPadding(false);
         layout.setSpacing(false);
         layout.getThemeList().set("spacing-s", true);
         layout.setAlignItems(FlexComponent.Alignment.STRETCH);
 
-        // Have a drawer header with an application logo
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
 
-        // Display the logo and the menu in the drawer
         layout.add(logoLayout, menu);
         return layout;
     }
@@ -154,7 +151,7 @@ public class MainLayout extends AppLayout {
     protected void afterNavigation() {
         super.afterNavigation();
 
-        // Select the tab corresponding to currently shown view
+        /* Select the tab corresponding to currently shown view */
         getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
 
     }

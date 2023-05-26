@@ -5,6 +5,57 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class for the permission request
+ * <p>
+ * This class is used to store the information about a permission request.
+ * <p>
+ * The information stored are:
+ * <p>
+ * - requestingPerson: the displayname of the person requesting the permission
+ * <p>
+ * - requestersMail: the mail of the person requesting the permission
+ * <p>
+ * - requestedPermissions: the permissions that are requested
+ * <p>
+ * - sonstiges: additional information about the permission request
+ * <p>
+ * - datumRequest: the date the permission request was created
+ * <p>
+ * - datumBoss1: the date the first boss approved the permission request
+ * <p>
+ * - datumBoss2: the date the second boss approved the permission request
+ * <p>
+ * - datumBoss3: the date the third boss approved the permission request
+ * <p>
+ * - datumBoss4: the date the fourth boss approved the permission request
+ * <p>
+ * - status: the status of the permission request
+ * <p>
+ * - approvedLevels: the number of levels that are approved
+ * <p>
+ * - toBeApprovedLevels: the number of levels that are still to be approved
+ * <p>
+ * - boss1DisplayName: the displayname of the first boss
+ * <p>
+ * - boss1Mail: the mail of the first boss
+ * <p>
+ * - boss2DisplayName: the displayname of the second boss
+ * <p>
+ * - boss2Mail: the mail of the second boss
+ * <p>
+ * - boss3DisplayName: the displayname of the third boss
+ * <p>
+ * - boss3Mail: the mail of the third boss
+ * <p>
+ * - boss4DisplayName: the displayname of the fourth boss
+ * <p>
+ * - boss4Mail: the mail of the fourth boss
+ * <p>
+ * - yesCode: the code for approving the permission request
+ * <p>
+ * - noCode: the code for declining the permission request
+ */
 @Entity
 @Table(name = "permission_requests")
 @Data
@@ -16,11 +67,11 @@ public class PermissionRequest {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "Antragsteller")
-    private String requestingPerson; //displayname
+    private String requestingPerson;
     @Column(name = "antragsteller_mail")
     private String requestersMail;
     @Column(name = "angefragte Gruppen", columnDefinition = "LONGTEXT")
-    private String requestedPermissions; // must be basic or it cannot be stored
+    private String requestedPermissions;
     // "Name:Gruppenname1,Beschreibung:Gruppenbeschreibung1#Name:Gruppenname2,Beschreibung:Gruppenbeschreibung2";
     @Column(name = "Sonstiges", columnDefinition = "TEXT")
     private String sonstiges;

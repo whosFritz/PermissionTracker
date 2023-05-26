@@ -47,7 +47,7 @@ public class DisApproveView extends Composite implements BeforeEnterObserver {
 
         try {
             PermissionRequest anfrage = permissionRequestService.findByNoCode(params.get("code").get(0));
-            if (anfrage != null && anfrage.getStatus().equals("in Bearbeitung")) { // existiert
+            if (anfrage != null && anfrage.getStatus().equals("in Bearbeitung")) { /* existiert */
                 if (!(anfrage.getRequestersMail() == null)) {
                     mailService.sendCancelInfoEmployee(anfrage, decissionDate);
                 }
@@ -58,7 +58,7 @@ public class DisApproveView extends Composite implements BeforeEnterObserver {
                 StreamResource logoStream = new StreamResource("trash-can-animation.gif", () -> getClass().getResourceAsStream("/static/gifs/trash-can-animation.gif"));
                 Image emojiGif = new Image(logoStream, "trash-can-animation.gif");
                 layout.add(emojiGif, new H3("Die Anfrage wurde hiermit gelöscht"));
-            } else { // wenn Eintrag nicht existiert
+            } else { /* wenn Eintrag nicht existiert */
                 StreamResource logoStream = new StreamResource("exploding-head-emoji.gif", () -> getClass().getResourceAsStream("/static/gifs/exploding-head-emoji.gif"));
                 Image emojiGif = new Image(logoStream, "exploding-head-emoji.gif");
                 layout.add(emojiGif, new H3("Anfrage wurde schon bearbeitet oder existiert nicht"));

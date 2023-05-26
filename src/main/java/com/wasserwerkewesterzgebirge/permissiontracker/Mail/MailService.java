@@ -35,7 +35,6 @@ public class MailService {
     private String SENDER_MAIL_ADRESSE;
 
 
-    //mail.sender.adress defined in application.properties
     public MailService(@Qualifier("messageContent") Message mimeMessage, PermissionRequestService permissionRequestService) {
         this.mimeMessage = mimeMessage;
         this.permissionRequestService = permissionRequestService;
@@ -93,7 +92,7 @@ public class MailService {
 
 
     public void sendMailToNextBoss(PermissionRequest anfrage, String datum) throws MessagingException {
-        // new Codes
+        /* new Codes */
         anfrage.setYesCode(RandomStringUtils.randomAlphanumeric(32));
         anfrage.setNoCode(RandomStringUtils.randomAlphanumeric(32));
 
@@ -101,18 +100,18 @@ public class MailService {
         mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(whichBossToSendNext_Mail(anfrage)));
         mimeMessage.setSubject("Berechtigungsanfrage von " + anfrage.getRequestingPerson());
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
-        String renderedBody = createDynamicMailContent_BossToApproveRequest(
-                anfrage.getId(),
-                anfrage.getRequestingPerson(),
-                whichBossToSendNext_Name(anfrage),
-                datum,
-                anfrage.getRequestedPermissions(),
-                anfrage.getSonstiges(),
-                anfrage.getYesCode(),
-                anfrage.getNoCode()
-        );
-        mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
-
+        mimeBodyPart.setContent(
+                createDynamicMailContent_BossToApproveRequest(
+                        anfrage.getId(),
+                        anfrage.getRequestingPerson(),
+                        whichBossToSendNext_Name(anfrage),
+                        datum,
+                        anfrage.getRequestedPermissions(),
+                        anfrage.getSonstiges(),
+                        anfrage.getYesCode(),
+                        anfrage.getNoCode()
+                ),
+                "text/html; charset=utf-8");
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(mimeBodyPart);
 
@@ -304,7 +303,7 @@ public class MailService {
 
     public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String msg) {
         msg = msg.replaceAll("%Antragsteller", antragsteller);
-        msg = msg.replaceAll("%Vorgesetzter", ablehner); // Vorgesetzter
+        msg = msg.replaceAll("%Vorgesetzter", ablehner);
         msg = msg.replaceAll("%Datum", datum);
         msg = msg.replaceAll("%ID", id.toString());
         return msg;
@@ -315,13 +314,13 @@ public class MailService {
         String disapproveUrL = "http://permission-track.ww-szb.local:8081/disapprove?code=" + disapproveCode;
         String msg = StaticEmailText.SEND_TO_BOSS;
         msg = msg.replaceAll("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter); // Vorgesetzter
-        msg = msg.replaceAll("%Datum", datum); // Datum
-        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Antragsteller", antragsteller);
+        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter);
+        msg = msg.replaceAll("%Datum", datum);
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen));
         msg = msg.replaceAll("%Sonstiges", sonstiges);
-        msg = msg.replaceAll("%link1", approveUrL); // link1
-        msg = msg.replaceAll("%link2", disapproveUrL); // link2
+        msg = msg.replaceAll("%link1", approveUrL);
+        msg = msg.replaceAll("%link2", disapproveUrL);
         return msg;
     }
 
@@ -338,36 +337,36 @@ public class MailService {
         String msg = StaticEmailText.QUITTUNG_FOR_EMPLOYEE;
 
         msg = msg.replaceAll("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter); // Vorgesetzter
-        msg = msg.replaceAll("%Datum", datum); // Datum
-        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Antragsteller", antragsteller);
+        msg = msg.replaceAll("%Vorgesetzter", vorgesetzter);
+        msg = msg.replaceAll("%Datum", datum);
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen));
         msg = msg.replaceAll("%Sonstiges", sonstiges);
         return msg;
     }
 
     private String createDynamicMailContent_FinalApproveInfo(Long id, String antragsteller, String datum, String msg) {
         msg = msg.replaceAll("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceAll("%Vorgesetzter", GF_NAME); // Vorgesetzter
-        msg = msg.replaceAll("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Antragsteller", antragsteller);
+        msg = msg.replaceAll("%Vorgesetzter", GF_NAME);
+        msg = msg.replaceAll("%Datum", datum);
         return msg;
     }
 
     private String createDynamicMailContent_EDV(Long id, String antragsteller, String datum, String sonstiges, String gruppen) {
         String msg = StaticEmailText.EDV_MAIL;
         msg = msg.replaceAll("%ID", id.toString());
-        msg = msg.replaceAll("%Antragsteller", antragsteller); // Antragsteller
-        msg = msg.replaceAll("%Vorgesetzter", GF_NAME); // Vorgesetzter
-        msg = msg.replaceAll("%Datum", datum); // Datum
+        msg = msg.replaceAll("%Antragsteller", antragsteller);
+        msg = msg.replaceAll("%Vorgesetzter", GF_NAME);
+        msg = msg.replaceAll("%Datum", datum);
         msg = msg.replaceAll("%Sonstiges", sonstiges);
-        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen)); // table
+        msg = msg.replaceAll("%Tabelle", HTML_table_builder(gruppen));
         return msg;
     }
 
 
     public String HTML_table_builder(String dataBaseEntry) {
-        //tbody, thead und tr müssen nicht gestyled werden
+        /* tbody, thead und tr müssen nicht gestyled werden */
         String tdStyle = " style=\"line-height: 24px; font-size: 16px; margin: 0; padding: 12px; border: 1px solid #e2e8f0;\" align=\"left\" valign=\"top\"";
         String thStyle = " style=\"line-height: 24px; font-size: 16px; margin: 0; padding: 12px; border-color: #e2e8f0; border-style: solid; border-width: 1px 1px 2px;\" align=\"left\" valign=\"top\"";
         String[] groups = dataBaseEntry.split("#");
@@ -381,7 +380,7 @@ public class MailService {
             String[] properties = group.split("&");
             String name = properties[0].split(":")[1];
             String beschreibung = properties[1].split(":")[1];
-            String kategorie = properties[2].split(":")[1]; // Extract Kategorie value
+            String kategorie = properties[2].split(":")[1];
 
             String tableRow = "<tr><td" + tdStyle + ">" + name + "</td><td" + tdStyle + ">" + beschreibung + "</td><td" + tdStyle + ">" + kategorie + "</td></tr>";
             tableRows.append(tableRow);
@@ -406,7 +405,6 @@ public class MailService {
 
         String result = stringBuilder.toString();
 
-        // Remove the trailing '#' if needed
         if (result.endsWith("#")) {
             result = result.substring(0, result.length() - 1);
         }

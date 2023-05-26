@@ -49,11 +49,6 @@ public class InformationView extends VerticalLayout {
         add(berechtigungsTabelle);
 
 
-//        StreamResource logoStream = new StreamResource("WW-Logo1.jpg", () -> getClass().getResourceAsStream("/static/Images/WW-Logo1.jpg"));
-//        Image WW_start_logo = new Image(logoStream, "WW_start_logo");
-//        WW_start_logo.setAlt("WW_start_logo");
-
-
     }
 
 

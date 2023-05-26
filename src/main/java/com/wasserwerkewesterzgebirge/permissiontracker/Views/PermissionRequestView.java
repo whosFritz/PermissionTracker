@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 @PageTitle("Berechtigung anfragen")
 @Route(value = "request-permission", layout = MainLayout.class)
@@ -57,25 +58,24 @@ public class PermissionRequestView extends VerticalLayout {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm 'Uhr'");
         antragstellungsdatum = now.format(formatter);
-        setSizeFull(); // Set the VerticalLayout to occupy the full available space
+        setSizeFull();
 
 
-        // Linke Seite
+        /* Linke Seite */
         VerticalLayout groupSelection = new VerticalLayout();
-        tableToChooseFrom = new Grid();
+        tableToChooseFrom = new Grid<>();
         tableToChooseFrom.setItems(zww_authorities_service.findAllAuthorities());
         tableToChooseFrom.addColumn(ZWW_Authority::getName).setHeader("Name").setSortable(true).setComparator(ZWW_Authority::getName).setKey("Name");
         tableToChooseFrom.addColumn(ZWW_Authority::getDescription).setHeader("Beschreibung").setSortable(true).setComparator(ZWW_Authority::getDescription);
         tableToChooseFrom.addColumn(ZWW_Authority::getCategory).setHeader("Kategorie").setSortable(true).setComparator(ZWW_Authority::getCategory);
         tableToChooseFrom.setSelectionMode(Grid.SelectionMode.MULTI);
-        tableToChooseFrom.addItemClickListener(event -> event.getItem());
         tableToChooseFrom.getColumns().forEach(zwwAuthorityColumn -> zwwAuthorityColumn.setAutoWidth(true));
         tableToChooseFrom.setSizeFull();
         groupSelection.setSizeFull();
         groupSelection.add(getToolBar());
         groupSelection.add(tableToChooseFrom);
 
-        // Rechte Seite
+        /* Rechte Seite */
         VerticalLayout rightpanel = new VerticalLayout();
         sonstiges = new TextArea();
         sonstiges.setLabel("Anmerkungen");
@@ -103,7 +103,7 @@ public class PermissionRequestView extends VerticalLayout {
         });
         rightpanel.add(sonstiges, sendButton, createRequestFlow());
 
-        // Links und Rechts
+        /* Links und Rechts */
         HorizontalLayout links_rechts = new HorizontalLayout();
         groupSelection.setWidth(80, Unit.PERCENTAGE);
         rightpanel.setWidth(20, Unit.PERCENTAGE);
@@ -164,7 +164,7 @@ public class PermissionRequestView extends VerticalLayout {
         try {
             String yescode = RandomStringUtils.randomAlphanumeric(32);
             String nocode = RandomStringUtils.randomAlphanumeric(32);
-            // Speichern dann laden und senden
+            /* Speichern dann laden dann senden */
             permissionRequestService.saveONE_PermissionRequest(new PermissionRequest
                     (securityService.getLoggedInUser().getGanzer_Name(),
                             securityService.getLoggedInUser().getMail() != null ? securityService.getLoggedInUser().getMail() : null,
@@ -183,12 +183,12 @@ public class PermissionRequestView extends VerticalLayout {
                             securityService.getLoggedInUser().getBoss4() != null ? securityService.getLoggedInUser().getBoss4().getEmail() : null,
                             yescode,
                             nocode));
-            // Gespeichert
+            /* Gespeichert */
             PermissionRequest geladenePermissionRequest = permissionRequestService.findByYesCode(yescode);
-            // Mail an mitarbeiter Quittung
+            /* Mail an mitarbeiter Quittung */
             if (geladenePermissionRequest.getRequestersMail() != null)
                 mailService.sendRequestQuittung(geladenePermissionRequest);
-            // Mail an Vorgeetzten zum Bestätigen
+            /* Mail an Vorgesetzten zum Bestätigen */
             mailService.sendMailFirstBoss(geladenePermissionRequest);
             Notification success = new Notification("Eine Mail wurde an deinen Vorgesetzten zur Bestätigung geschickt.");
             success.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
@@ -197,7 +197,7 @@ public class PermissionRequestView extends VerticalLayout {
 
         } catch (Exception e) {
             logger.error("Ein Fehler trat auf", e);
-            Notification error = new Notification("Da lief wohl etwas schief \uD83D\uDE14   " + e.getStackTrace().toString());
+            Notification error = new Notification("Da lief wohl etwas schief \uD83D\uDE14   " + Arrays.toString(e.getStackTrace()));
             error.addThemeVariants(NotificationVariant.LUMO_ERROR);
             error.setDuration(10000);
             error.open();

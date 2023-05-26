@@ -13,7 +13,7 @@ public class Logged_in_User extends LdapUserDetailsImpl {
     private String kuerzel;
     private String vorname;
     private String nachname;
-    private String ganzer_Name; //displayname
+    private String ganzer_Name;
     private String DN;
     private String mail;
     private Collection<? extends GrantedAuthority> users_authorities;

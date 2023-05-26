@@ -46,9 +46,7 @@ public class WebSecurityConfig extends VaadinWebSecurity {
         ActiveDirectoryLdapAuthenticationProvider AD_ldap_auth_provider = new ActiveDirectoryLdapAuthenticationProvider(
                 domain,
                 url);
-
         AD_ldap_auth_provider.setUserDetailsContextMapper(customUserDetailsContextMapper());
-//        AD_ldap_auth_provider.setUseAuthenticationRequestCredentials(true); //default is true
         return AD_ldap_auth_provider;
     }
 }
