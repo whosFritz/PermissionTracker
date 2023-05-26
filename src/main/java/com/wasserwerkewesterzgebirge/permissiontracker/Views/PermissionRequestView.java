@@ -71,6 +71,7 @@ public class PermissionRequestView extends VerticalLayout {
         tableToChooseFrom.setSelectionMode(Grid.SelectionMode.MULTI);
         tableToChooseFrom.getColumns().forEach(zwwAuthorityColumn -> zwwAuthorityColumn.setAutoWidth(true));
         tableToChooseFrom.setSizeFull();
+        tableToChooseFrom.addItemClickListener(e -> tableToChooseFrom.asMultiSelect().select(e.getItem()));
         groupSelection.setSizeFull();
         groupSelection.add(getToolBar());
         groupSelection.add(tableToChooseFrom);
