@@ -1,14 +1,16 @@
 package com.wasserwerkewesterzgebirge.permissiontracker.User;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 
 import java.util.Collection;
 
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Logged_in_User extends LdapUserDetailsImpl {
     private String kuerzel;
     private String vorname;
