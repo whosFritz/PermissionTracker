@@ -40,6 +40,8 @@ public class MailService {
     private String GF_MAIL;
     @Value("${mail.sender.address}")
     private String SENDER_MAIL_ADRESSE;
+    @Value("${tryagain.btn.link}")
+    private String TRY_AGAIN_BTN_LINK;
 
     /**
      * Constructor.
@@ -71,8 +73,7 @@ public class MailService {
                 anfrage.getBoss1DisplayName(),
                 anfrage.getDatumRequest(),
                 anfrage.getRequestedPermissions(),
-                anfrage.getSonstiges(),
-                StaticEmailText.QUITTUNG_FOR_EMPLOYEE
+                anfrage.getSonstiges()
         );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
@@ -105,8 +106,7 @@ public class MailService {
                 anfrage.getRequestedPermissions(),
                 anfrage.getSonstiges(),
                 anfrage.getYesCode(),
-                anfrage.getNoCode(),
-                StaticEmailText.SEND_TO_BOSS
+                anfrage.getNoCode()
         );
         mimeBodyPart.setContent(renderedBody, "text/html; charset=utf-8");
 
@@ -144,8 +144,7 @@ public class MailService {
                         anfrage.getRequestedPermissions(),
                         anfrage.getSonstiges(),
                         anfrage.getYesCode(),
-                        anfrage.getNoCode(),
-                        StaticEmailText.SEND_TO_BOSS
+                        anfrage.getNoCode()
                 ),
                 "text/html; charset=utf-8");
         Multipart multipart = new MimeMultipart();
@@ -399,89 +398,90 @@ public class MailService {
     /**
      * Creates the dynamic content for the cancel mails.
      *
-     * @param id                The id of the request.
-     * @param antragsteller     The requester.
-     * @param ablehner          The boss who declined.
-     * @param datum             The date of the request.
-     * @param STATIC_EMAIL_TEXT The static text of the mail.
+     * @param id            The id of the request.
+     * @param antragsteller The requester.
+     * @param ablehner      The boss who declined.
+     * @param datum         The date of the request.
+     * @param email_text    The static text of the mail.
      * @return The dynamic content for the cancel mails.
      */
-    public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String STATIC_EMAIL_TEXT) {
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Antragsteller", antragsteller);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Vorgesetzter", ablehner);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Datum", datum);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%ID", id.toString());
-        return STATIC_EMAIL_TEXT;
+    public String createDynamicMailContent_CancelInfo(Long id, String antragsteller, String ablehner, String datum, String email_text) {
+        email_text = email_text.replaceAll("%Antragsteller", antragsteller);
+        email_text = email_text.replaceAll("%Vorgesetzter", ablehner);
+        email_text = email_text.replaceAll("%Datum", datum);
+        email_text = email_text.replaceAll("%ID", id.toString());
+        email_text = email_text.replaceAll("%btnLink", TRY_AGAIN_BTN_LINK);
+        return email_text;
     }
 
     /**
      * Create the dynamic content for the boss approve mails.
      *
-     * @param id                The id of the request.
-     * @param antragsteller     The requester.
-     * @param vorgesetzter      The boss who approved.
-     * @param datum             The date of the request.
-     * @param gruppen           The groups of the request.
-     * @param sonstiges         The other permissions of the request.
-     * @param approveCode       The approval code of the request.
-     * @param disapproveCode    The disapprove code of the request.
-     * @param STATIC_EMAIL_TEXT The static text of the mail.
+     * @param id             The id of the request.
+     * @param antragsteller  The requester.
+     * @param vorgesetzter   The boss who approved.
+     * @param datum          The date of the request.
+     * @param gruppen        The groups of the request.
+     * @param sonstiges      The other permissions of the request.
+     * @param approveCode    The approval code of the request.
+     * @param disapproveCode The disapprove code of the request.
      * @return The dynamic content for the boss approve mails.
      */
-    private String createDynamicMailContent_BossToApproveRequest(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges, String approveCode, String disapproveCode, String STATIC_EMAIL_TEXT) {
+    private String createDynamicMailContent_BossToApproveRequest(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges, String approveCode, String disapproveCode) {
         String approveUrL = "http://permission-track.ww-szb.local:8081/approve?code=" + approveCode;
         String disapproveUrL = "http://permission-track.ww-szb.local:8081/disapprove?code=" + disapproveCode;
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%ID", id.toString());
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Antragsteller", antragsteller);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Vorgesetzter", vorgesetzter);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Datum", datum);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Tabelle", HTML_table_builder(gruppen));
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Sonstiges", sonstiges);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%link1", approveUrL);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%link2", disapproveUrL);
-        return STATIC_EMAIL_TEXT;
+        String email_text = StaticEmailText.SEND_TO_BOSS;
+        email_text = email_text.replaceAll("%ID", id.toString());
+        email_text = email_text.replaceAll("%Antragsteller", antragsteller);
+        email_text = email_text.replaceAll("%Vorgesetzter", vorgesetzter);
+        email_text = email_text.replaceAll("%Datum", datum);
+        email_text = email_text.replaceAll("%Tabelle", HTML_table_builder(gruppen));
+        email_text = email_text.replaceAll("%Sonstiges", sonstiges);
+        email_text = email_text.replaceAll("%link1", approveUrL);
+        email_text = email_text.replaceAll("%link2", disapproveUrL);
+        return email_text;
     }
 
     /**
      * Create the dynamic content for the employee approve mails.
      *
-     * @param id                The id of the request.
-     * @param requestingPerson  The requester.
-     * @param approver          The boss who approved.
-     * @param nextapprover      The next boss who has to approve.
-     * @param datum             The date of the request.
-     * @param STATIC_EMAIL_TEXT The static text of the mail.
+     * @param id               The id of the request.
+     * @param requestingPerson The requester.
+     * @param approver         The boss who approved.
+     * @param nextapprover     The next boss who has to approve.
+     * @param datum            The date of the request.
+     * @param email_text       The static text of the mail.
      * @return The dynamic content for the employee approve mails.
      */
-    private String createDynamicMailContent_ApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum, String STATIC_EMAIL_TEXT) {
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Antragsteller", requestingPerson);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Vorgesetzter", approver);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%BossVonBoss", nextapprover);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Datum", datum);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%ID", id.toString());
-        return STATIC_EMAIL_TEXT;
+    private String createDynamicMailContent_ApproveInfo(Long id, String requestingPerson, String approver, String nextapprover, String datum, String email_text) {
+        email_text = email_text.replaceAll("%Antragsteller", requestingPerson);
+        email_text = email_text.replaceAll("%Vorgesetzter", approver);
+        email_text = email_text.replaceAll("%BossVonBoss", nextapprover);
+        email_text = email_text.replaceAll("%Datum", datum);
+        email_text = email_text.replaceAll("%ID", id.toString());
+        return email_text;
     }
 
     /**
      * Create the dynamic content for the employee approve mails.
      *
-     * @param id                The id of the request.
-     * @param antragsteller     The requester.
-     * @param vorgesetzter      The boss who approved.
-     * @param datum             The date of the request.
-     * @param gruppen           The groups of the request.
-     * @param sonstiges         The other permissions of the request.
-     * @param STATIC_EMAIL_TEXT The static text of the mail.
+     * @param id            The id of the request.
+     * @param antragsteller The requester.
+     * @param vorgesetzter  The boss who approved.
+     * @param datum         The date of the request.
+     * @param gruppen       The groups of the request.
+     * @param sonstiges     The other permissions of the request.
      * @return The dynamic content for the employee approve mails.
      */
-    private String createDynamicMailContent_Quittung(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges, String STATIC_EMAIL_TEXT) {
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%ID", id.toString());
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Antragsteller", antragsteller);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Vorgesetzter", vorgesetzter);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Datum", datum);
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Tabelle", HTML_table_builder(gruppen));
-        STATIC_EMAIL_TEXT = STATIC_EMAIL_TEXT.replaceAll("%Sonstiges", sonstiges);
-        return STATIC_EMAIL_TEXT;
+    private String createDynamicMailContent_Quittung(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges) {
+        String email_text = StaticEmailText.QUITTUNG_FOR_EMPLOYEE;
+        email_text = email_text.replaceAll("%ID", id.toString());
+        email_text = email_text.replaceAll("%Antragsteller", antragsteller);
+        email_text = email_text.replaceAll("%Vorgesetzter", vorgesetzter);
+        email_text = email_text.replaceAll("%Datum", datum);
+        email_text = email_text.replaceAll("%Tabelle", HTML_table_builder(gruppen));
+        email_text = email_text.replaceAll("%Sonstiges", sonstiges);
+        return email_text;
     }
 
     /**

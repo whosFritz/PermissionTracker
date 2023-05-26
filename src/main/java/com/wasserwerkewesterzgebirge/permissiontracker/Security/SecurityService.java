@@ -8,7 +8,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Component;
 
 /**
- * This class is used to get the logged in user.
+ * This class is used to get the logged-in user.
  */
 @Component
 public class SecurityService {
@@ -19,9 +19,9 @@ public class SecurityService {
     private static final String LOGOUT_SUCCESS_URL = "/";
 
     /**
-     * This method returns the logged in user.
+     * This method returns the logged-in user.
      *
-     * @return the logged in user.
+     * @return the logged-in user.
      */
     public Logged_in_User getLoggedInUser() {
         return (Logged_in_User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

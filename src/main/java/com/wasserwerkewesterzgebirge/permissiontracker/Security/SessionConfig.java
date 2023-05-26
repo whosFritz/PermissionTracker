@@ -4,7 +4,8 @@ import com.vaadin.flow.server.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/* @Configuration */
+
+//@Configuration
 public class SessionConfig implements VaadinServiceInitListener, SystemMessagesProvider, SessionExpiredHandler, SessionDestroyListener {
     Logger logger = LoggerFactory.getLogger(SessionConfig.class);
 
@@ -13,7 +14,7 @@ public class SessionConfig implements VaadinServiceInitListener, SystemMessagesP
         try {
             sessionDestroyEvent.getSession().getSession().invalidate();
         } catch (Exception e) {
-            logger.error("Ein Fehler trat auf: ", e);
+            logger.error("Ein Session-Fehler trat auf: ", e);
         }
     }
 
@@ -33,7 +34,7 @@ public class SessionConfig implements VaadinServiceInitListener, SystemMessagesP
         messages.setSessionExpiredNotificationEnabled(true);
         messages.setCookiesDisabledCaption("Cookies deaktiviert");
         messages.setCookiesDisabledMessage("Bitte aktivieren Sie Cookies in Ihrem Browser.");
-        messages.setSessionExpiredMessage("Die Sitzung wurde aufgrund von Inaktivität nach 1 Minute beendet!");
+        messages.setSessionExpiredMessage("Die Sitzung wurde aufgrund von Inaktivität nach 20 Minute beendet!");
         messages.setSessionExpiredCaption("Sitzung abgelaufen");
         messages.setInternalErrorCaption("Interner Serverfehler");
         messages.setInternalErrorMessage("Ein interner Fehler ist aufgetreten. Bitte benachrichtigen Sie die technischen Administratoren!");
