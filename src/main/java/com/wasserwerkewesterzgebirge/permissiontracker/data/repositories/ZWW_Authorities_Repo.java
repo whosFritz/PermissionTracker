@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * This is the repository for the authorities.
+ * <p>
+ * It contains a search method to filter in PermissionRequestView.class.
+ */
 @Repository
 public interface ZWW_Authorities_Repo extends JpaRepository<ZWW_Authority, Long> {
     @Query("select c from ZWW_Authority c " +

@@ -10,9 +10,14 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
+/**
+ * Configuration class for the mail properties.
+ */
 @Configuration
 public class MailConfig {
-
+    /**
+     * The mail properties.
+     */
     @Value("${mail.smtp.auth}")
     private String auth;
 
@@ -28,12 +33,18 @@ public class MailConfig {
     @Value("${mail.transport.protocol}")
     private String protocol;
 
+    /**
+     * The mail content.
+     */
     @Bean
     @Qualifier("messageContent")
     public Message mailInsertProperties() {
         return new MimeMessage(Session.getInstance(mailProperties()));
     }
 
+    /**
+     * The mail properties.
+     */
     @Bean
     @Qualifier("mailProperties")
     public Properties mailProperties() {

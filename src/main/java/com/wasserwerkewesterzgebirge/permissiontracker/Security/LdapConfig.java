@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 
+/**
+ * Configuration class for the ldap properties.
+ */
 @Configuration
 public class LdapConfig {
 
@@ -16,6 +19,7 @@ public class LdapConfig {
     @Value("${ldap.Admin.password}")
     private String ldapAdminPassword;
 
+    
     @Bean
     public LdapContextSource init_ldap_contextSource() {
         LdapContextSource contextSource = new LdapContextSource();

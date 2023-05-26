@@ -33,6 +33,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+/**
+ * View for requesting permissions.
+ * <p>
+ * This view is used to request permissions from the admin.
+ * The user can select the permissions he wants to request and add a comment.
+ * The request is saved in the database.
+ * Then send to his boss.
+ * The boss can accept or decline the request.
+ */
 @PageTitle("Berechtigung anfragen")
 @Route(value = "request-permission", layout = MainLayout.class)
 @PermitAll

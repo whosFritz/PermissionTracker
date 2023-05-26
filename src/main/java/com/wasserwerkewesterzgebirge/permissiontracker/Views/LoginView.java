@@ -14,6 +14,14 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * LoginView is the view for the login page.
+ * It is the first page the user sees when he opens the application.
+ * It is also the page the user is redirected to when he is not logged in and tries to access a page that requires authentication.
+ * The user can log in with his username and password.
+ * If the user is not logged in and tries to access a page that requires authentication, he is redirected to the login page.
+ * If the user is logged in and tries to access the login page, he is redirected to the main page.
+ */
 @Route("login")
 @PageTitle("Login | PermTracker")
 @AnonymousAllowed

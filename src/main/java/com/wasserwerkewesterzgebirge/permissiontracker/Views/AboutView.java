@@ -8,6 +8,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 
+/**
+ * This class is used to display the about page.
+ * It is used to display information about the application.
+ * It is also used to display the contact information of the developer.
+ */
 @PageTitle("About Page")
 @Route(value = "about-page", layout = MainLayout.class)
 @PermitAll

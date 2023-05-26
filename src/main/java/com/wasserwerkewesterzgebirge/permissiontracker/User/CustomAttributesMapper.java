@@ -5,6 +5,12 @@ import org.springframework.ldap.core.AttributesMapper;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 
+/**
+ * CustomAttributesMapper
+ * <p>
+ * Maps the attributes from the LDAP server to the LdapUser object
+ * </p>
+ */
 public class CustomAttributesMapper implements AttributesMapper<LdapUser> {
 
     @Override

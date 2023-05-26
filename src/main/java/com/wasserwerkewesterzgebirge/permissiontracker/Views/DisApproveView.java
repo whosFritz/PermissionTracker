@@ -23,6 +23,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * DisApproveView
+ * <p>
+ * View for declining a request
+ * <p>
+ * This view is used to decline a request.
+ * It is accessed by clicking on the link in the email.
+ * The user is redirected to this view and the request is declined.
+ * The user is informed about the decision.
+ * The boss is informed about the decision.
+ * The request is deleted.
+ * </p>
+ */
 @Route("disapprove")
 @PageTitle("Nicht Bestätigt")
 @AnonymousAllowed

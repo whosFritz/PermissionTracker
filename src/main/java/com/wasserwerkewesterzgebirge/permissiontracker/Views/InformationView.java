@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * InformationView
+ * <p>
+ * View for displaying the users authorities
+ * </p>
+ */
 @PageTitle("Info Seite")
 @Route(value = "", layout = MainLayout.class)
 @PermitAll

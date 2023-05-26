@@ -24,6 +24,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ApproveView
+ * <p>
+ * View for approving a request
+ * <p>
+ * This view is used to approve a request.
+ * It is accessed by clicking on the link in the email.
+ * The user is redirected to this view and the request is approved.
+ * </p>
+ */
 @Route("approve")
 @PageTitle("Bestätigt")
 @AnonymousAllowed

@@ -14,6 +14,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Class to map the Active Directory User to the Logged_in_User class
+ */
 public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
     private int bossCount = 0;
     @Value("${mail.gf.name}")
