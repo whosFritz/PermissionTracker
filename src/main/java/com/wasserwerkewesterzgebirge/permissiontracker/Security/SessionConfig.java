@@ -12,7 +12,7 @@ public class SessionConfig implements VaadinServiceInitListener, SystemMessagesP
     @Override
     public void sessionDestroy(SessionDestroyEvent sessionDestroyEvent) {
         try {
-            sessionDestroyEvent.getSession().getSession().invalidate();
+            if (sessionDestroyEvent.getSession() != null) sessionDestroyEvent.getSession().getSession().invalidate();
         } catch (Exception e) {
             logger.error("Ein Session-Fehler trat auf: ", e);
         }
