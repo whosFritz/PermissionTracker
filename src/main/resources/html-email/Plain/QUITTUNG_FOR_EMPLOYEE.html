@@ -1,39 +1,38 @@
 <html style="background-color: #c8f6ff">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <style>
-      /* Add custom classes and styles that you want inlined here */
+        /* Add custom classes and styles that you want inlined here */
     </style>
-    <title>Quittung</title>
-  </head>
-  <body>
-    <preview>Hier ist deine Quittung zu deiner Berechtigungsanfrage</preview>
-    <div class="container">
-      <div class="card my-10">
+</head>
+<body class="bg-light">
+<preview>Hier ist deine Quittung zu deiner Berechtigungsanfrage</preview>
+<div class="container">
+    <div class="card my-10">
         <div class="card-body">
-          <h1 class="h3 mb-2">Quittung</h1>
-          <h5 class="text-teal-700 py-3">
-            Hier ist deine Quittung zu deiner Berechtigungsanfrage.
-          </h5>
-          <h5 class="py-3">Datum: %Datum</h5>
-          <h5>Dein Vorgesetzter: %Vorgesetzter</h5>
-          <h5 class="pt-3">ID: %ID</h5>
-          <hr />
-          <div class="space-y-3">
-            <p>Hallo %Antragsteller,</p>
-            <p>du hast folgende Gruppen angefragt.</p>
-            <table class="table table-striped thead-default table-bordered">
-              %Tabelle
-            </table>
-            <hr />
-            <h6>Deine Anmerkungen:</h6>
-            <p>%Sonstiges</p>
-            <hr />
-            <p>Viele Grüße</p>
-            <p>PermissionTracker</p>
-          </div>
+            <h1 class="h3 mb-2">Quittung 📝</h1>
+            <h5 class="text-teal-700 py-3">
+                Hier ist deine Quittung zu deiner Berechtigungsanfrage.
+            </h5>
+            <h5 class="py-3">Datum: %Datum</h5>
+            <h5>Dein Vorgesetzter: %Vorgesetzter</h5>
+            <h5 class="pt-3">ID: %ID</h5>
+            <hr/>
+            <div class="space-y-3">
+                <p>Sehr geehrter %Antragsteller,</p>
+                <p>du hast folgende Gruppen angefragt.</p>
+                <table class="table table-striped thead-default table-bordered">
+                    %Tabelle
+                </table>
+                <hr/>
+                <h6>Deine Anmerkungen:</h6>
+                <p>%Sonstiges</p>
+                <hr/>
+                <p>Viele Grüße</p>
+                <p>PermissionTracker</p>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

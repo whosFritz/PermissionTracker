@@ -40,8 +40,9 @@ public class MailService {
     private String GF_MAIL;
     @Value("${mail.sender.address}")
     private String SENDER_MAIL_ADRESSE;
-    @Value("${tryagain.btn.link}")
-    private String TRY_AGAIN_BTN_LINK;
+    @Value("${server.url}")
+    private String SERVER_URL;
+
 
     /**
      * Constructor.
@@ -410,7 +411,7 @@ public class MailService {
         email_text = email_text.replaceAll("%Vorgesetzter", ablehner);
         email_text = email_text.replaceAll("%Datum", datum);
         email_text = email_text.replaceAll("%ID", id.toString());
-        email_text = email_text.replaceAll("%btnLink", TRY_AGAIN_BTN_LINK);
+        email_text = email_text.replaceAll("%btnLink", SERVER_URL);
         return email_text;
     }
 
@@ -428,8 +429,8 @@ public class MailService {
      * @return The dynamic content for the boss approve mails.
      */
     private String createDynamicMailContent_BossToApproveRequest(Long id, String antragsteller, String vorgesetzter, String datum, String gruppen, String sonstiges, String approveCode, String disapproveCode) {
-        String approveUrL = "http://permission-track.ww-szb.local:8081/approve?code=" + approveCode;
-        String disapproveUrL = "http://permission-track.ww-szb.local:8081/disapprove?code=" + disapproveCode;
+        String approveUrL = SERVER_URL + "approve?code=" + approveCode;
+        String disapproveUrL = SERVER_URL + "disapprove?code=" + disapproveCode;
         String email_text = StaticEmailText.SEND_TO_BOSS;
         email_text = email_text.replaceAll("%ID", id.toString());
         email_text = email_text.replaceAll("%Antragsteller", antragsteller);

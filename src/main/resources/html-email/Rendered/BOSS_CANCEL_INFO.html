@@ -59,6 +59,14 @@
                 width: 100% !important
             }
 
+            .pt-3:not(table), .pt-3:not(.btn) > tbody > tr > td, .pt-3.btn td a, .py-3:not(table), .py-3:not(.btn) > tbody > tr > td, .py-3.btn td a {
+                padding-top: 12px !important
+            }
+
+            .pb-3:not(table), .pb-3:not(.btn) > tbody > tr > td, .pb-3.btn td a, .py-3:not(table), .py-3:not(.btn) > tbody > tr > td, .py-3.btn td a {
+                padding-bottom: 12px !important
+            }
+
             *[class*=s-lg-] > tbody > tr > td {
                 font-size: 0 !important;
                 line-height: 0 !important;
@@ -207,9 +215,35 @@
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
+                                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                                   class="py-3" role="presentation">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td align="left"
+                                                                        style="line-height: 24px; font-size: 16px; padding-top: 12px; padding-bottom: 12px; margin: 0;">
+                                                                        <h5 align="left"
+                                                                            class="text-teal-700"
+                                                                            style="color: #13795b; padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;">Berechtigungsanfrage
+                                                                            abgelehnt</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                                   class="py-3" role="presentation">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td align="left"
+                                                                        style="line-height: 24px; font-size: 16px; padding-top: 12px; padding-bottom: 12px; margin: 0;">
+                                                                        <h5 align="left"
+                                                                            class=""
+                                                                            style="padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;">Datum: %Datum</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
                                                             <h5 align="left"
-                                                                class="text-teal-700"
-                                                                style="color: #13795b; padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;">Berechtigungsanfrage abgelehnt</h5>
+                                                                style="padding-top: 0; padding-bottom: 0; font-weight: 500; vertical-align: baseline; font-size: 20px; line-height: 24px; margin: 0;">ID: %ID</h5>
                                                             <table border="0" cellpadding="0" cellspacing="0"
                                                                    class="s-5 w-full" role="presentation" style="width: 100%;"
                                                                    width="100%">
@@ -247,36 +281,6 @@
                                                             <div class="space-y-3">
                                                                 <p align="left"
                                                                    class=""
-                                                                   style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;">ID: %ID</p>
-                                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                                       class="s-3 w-full" role="presentation"
-                                                                       style="width: 100%;" width="100%">
-                                                                    <tbody>
-                                                                    <tr>
-                                                                        <td align="left"
-                                                                            height="12" style="line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;" width="100%">
-                                                                            &#160;
-                                                                        </td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <p align="left"
-                                                                   class=""
-                                                                   style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;">Datum: %Datum</p>
-                                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                                       class="s-3 w-full" role="presentation"
-                                                                       style="width: 100%;" width="100%">
-                                                                    <tbody>
-                                                                    <tr>
-                                                                        <td align="left"
-                                                                            height="12" style="line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;" width="100%">
-                                                                            &#160;
-                                                                        </td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <p align="left"
-                                                                   class=""
                                                                    style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;">Hallo %Vorgesetzter,</p>
                                                                 <table border="0" cellpadding="0" cellspacing="0"
                                                                        class="s-3 w-full" role="presentation"
@@ -291,26 +295,10 @@
                                                                     </tbody>
                                                                 </table>
                                                                 <p align="left"
-                                                                   class=""
                                                                    style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;">
                                                                     du hast die Berechtigungsanfrage von %Antragsteller
-                                                                    abgelehnt.
+                                                                    abgelehnt.&#10060;
                                                                 </p>
-                                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                                       class="s-3 w-full" role="presentation"
-                                                                       style="width: 100%;" width="100%">
-                                                                    <tbody>
-                                                                    <tr>
-                                                                        <td align="left"
-                                                                            height="12" style="line-height: 12px; font-size: 12px; width: 100%; height: 12px; margin: 0;" width="100%">
-                                                                            &#160;
-                                                                        </td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <p align="left"
-                                                                   style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;">Vielleicht klappt es beim n&#228;chsten
-                                                                    Mal &#128522;</p>
                                                             </div>
                                                             <table border="0" cellpadding="0" cellspacing="0"
                                                                    class="s-5 w-full" role="presentation" style="width: 100%;"

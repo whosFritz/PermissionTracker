@@ -103,6 +103,7 @@ public class PermissionRequestView extends VerticalLayout {
         dialog.addConfirmListener(event -> {
             pressSendButton();
             tableToChooseFrom.deselectAll();
+            sonstiges.clear();
         });
         Button sendButton = new Button("Absenden", event -> {
             if (!tableToChooseFrom.getSelectedItems().isEmpty()) {
