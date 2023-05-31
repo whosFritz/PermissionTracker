@@ -44,7 +44,7 @@ Contributions to the PermissionTracker project are welcome. If you encounter any
 
 ## License
 
-PermissionTracker is released under the [MIT License](./LICENSE.md). You are free to use, modify, and distribute the application in accordance with the terms of the license.
+PermissionTracker is released under the [MIT License](./license.md). You are free to use, modify, and distribute the application in accordance with the terms of the license.
 
 ---
 
