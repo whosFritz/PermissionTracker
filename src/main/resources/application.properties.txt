@@ -1,0 +1,34 @@
+spring.datasource.url=jdbc:mariadb://localhost:3306/permissiontrack
+spring.datasource.username=root
+spring.datasource.password=secretpassword
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+#
+mail.sender.address=sender@mail.de
+mail.gf.name=Fritz Schubert
+mail.gf.mail=Fritz.Schubert@mail.de
+mail.edv.mail=edv@mail.de
+#
+logging.config=classpath:logback-dev.xml
+server.servlet.session.timeout=20m
+server.port=8080
+#
+ldap.url=ldaps://my-ldap.local:389
+# User to query ldapserver for user credentials
+ldap.Admin.Dn=CN=Fritz Schubert,OU=OU,DC=my-ldap,DC=local
+ldap.Admin.password=userpassword
+ldap.server.url=ldaps://domaincontroller.my-ldap.local
+ldap.server.domain=my-ldap.local
+# Look at docu about spring boot mail dependency
+mail.smtp.auth=
+mail.smtp.host=
+mail.smtp.port=
+mail.smtp.starttls.enable=
+mail.transport.protocol=
+#
+server.url=http://localhost:8080/
+#
+info.app.name=@project.artifactId@
+info.app.version=@project.version@
+info.app.developer.name=yourname | your nic name
+info.app.developer.email=yourmail
