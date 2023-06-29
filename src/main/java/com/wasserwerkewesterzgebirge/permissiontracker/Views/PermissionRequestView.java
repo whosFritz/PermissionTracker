@@ -82,9 +82,13 @@ public class PermissionRequestView extends VerticalLayout {
         tableToChooseFrom.setSizeFull();
         tableToChooseFrom.addItemClickListener(e ->
                 {
-                    if (tableToChooseFrom.getSelectedItems().contains(e.getItem()))
-                        tableToChooseFrom.asMultiSelect().deselect(e.getItem());
-                    tableToChooseFrom.asMultiSelect().select(e.getItem());
+                    if (tableToChooseFrom.getSelectedItems().contains(e.getItem())) {
+                        tableToChooseFrom.deselect(e.getItem());
+                        logger.info("Deselected: " + e.getItem().getName());
+                    } else {
+                        tableToChooseFrom.asMultiSelect().select(e.getItem());
+                        logger.info("Selected: " + e.getItem().getName());
+                    }
                 }
         );
         groupSelection.setSizeFull();
