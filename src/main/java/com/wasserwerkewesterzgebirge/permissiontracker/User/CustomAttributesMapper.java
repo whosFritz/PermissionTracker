@@ -17,10 +17,10 @@ public class CustomAttributesMapper implements AttributesMapper<LdapUser> {
     public LdapUser mapFromAttributes(Attributes attributes) throws NamingException {
         LdapUser ldapUser = new LdapUser();
 
-        ldapUser.setDN((String) attributes.get("distinguishedName").get());
-        ldapUser.setDisplayName((String) attributes.get("displayname").get());
-        ldapUser.setEmail((String) attributes.get("mail").get());
-        ldapUser.setChef((String) attributes.get("manager").get());
+        ldapUser.setDN(attributes.get("distinguishedName") != null ? (String) attributes.get("distinguishedName").get() : null);
+        ldapUser.setDisplayName(attributes.get("displayname") != null ? (String) attributes.get("displayname").get() : null);
+        ldapUser.setEmail(attributes.get("mail") != null ? (String) attributes.get("mail").get() : null);
+        ldapUser.setChef(attributes.get("manager") != null ? (String) attributes.get("manager").get() : null);
 
         return ldapUser;
     }

@@ -57,13 +57,13 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
         UserDetails userDetails = super.mapUserFromContext(ctx, username, authorities);
         Logged_in_User loggedInUser = new Logged_in_User();
 
-        loggedInUser.setKuerzel(userDetails.getUsername()); /* kürzel */
-        loggedInUser.setVorname(ctx.getStringAttribute("givenName")); /* Vorname */
-        loggedInUser.setNachname(ctx.getStringAttribute("sn")); /* Nachname */
-        loggedInUser.setGanzer_Name(ctx.getStringAttribute("displayname")); /* Vorname Nachname */
-        loggedInUser.setMail(ctx.getStringAttribute("mail")); /* Email */
+        loggedInUser.setKuerzel(userDetails.getUsername() != null ? userDetails.getUsername() : null); /* kürzel */
+        loggedInUser.setVorname(ctx.getStringAttribute("givenName") != null ? ctx.getStringAttribute("givenName") : null); /* Vorname */
+        loggedInUser.setNachname(ctx.getStringAttribute("sn") != null ? ctx.getStringAttribute("sn") : null); /* Nachname */
+        loggedInUser.setGanzer_Name(ctx.getStringAttribute("displayname") != null ? ctx.getStringAttribute("displayname") : null); /* Vorname Nachname */
+        loggedInUser.setMail(ctx.getStringAttribute("mail") != null ? ctx.getStringAttribute("mail") : null); /* Email */
         loggedInUser.setUsers_authorities(userDetails.getAuthorities()); /* [Sicherheitsgruppen] */
-        loggedInUser.setDN(ctx.getStringAttribute("distinguishedName")); /* CN=DisplayName, OU=... */
+        loggedInUser.setDN(ctx.getStringAttribute("distinguishedName") != null ? ctx.getStringAttribute("distinguishedName") : null); /* CN=DisplayName, OU=... */
 
 //        loggedInUser.setPasswordExpireDate(calculatePasswordExpirationDate(ctx.getStringAttribute("pwdLastSet"))); // get all attributes
 
@@ -72,17 +72,17 @@ public class ActiveDirectoryObjectMapper extends LdapUserDetailsMapper {
             if (!loggedInUser.getGanzer_Name().equals(GF_NAME)) {
                 loggedInUser.setBoss1(findLdapUser(ctx.getStringAttribute("manager"))); /* direkter vorgesetzter */
                 bossCount += 1;
-                if (!loggedInUser.getBoss1().getDisplayName().equals(GF_NAME)) {
+                if (loggedInUser.getBoss1() != null && !loggedInUser.getBoss1().getDisplayName().equals(GF_NAME)) {
                     /* Zweite Ebene */
-                    loggedInUser.setBoss2(findLdapUser(loggedInUser.getBoss1().getChef())); /* chef vom chef */
+                    loggedInUser.setBoss2(loggedInUser.getBoss1().getChef() != null ? findLdapUser(loggedInUser.getBoss1().getChef()) : null); /* chef vom chef */
                     bossCount += 1;
-                    if (!loggedInUser.getBoss2().getDisplayName().equals(GF_NAME)) {
+                    if (loggedInUser.getBoss2() != null && !loggedInUser.getBoss2().getDisplayName().equals(GF_NAME)) {
                         /* Dritte Ebene */
-                        loggedInUser.setBoss3(findLdapUser(loggedInUser.getBoss2().getChef())); /* chef vom chef vom chef */
+                        loggedInUser.setBoss3(loggedInUser.getBoss2().getChef() != null ? findLdapUser(loggedInUser.getBoss2().getChef()) : null); /* chef vom chef vom chef */
                         bossCount += 1;
-                        if (!loggedInUser.getBoss3().getDisplayName().equals(GF_NAME)) {
+                        if (loggedInUser.getBoss3() != null && !loggedInUser.getBoss3().getDisplayName().equals(GF_NAME)) {
                             /* Vierte Ebene */
-                            loggedInUser.setBoss4(findLdapUser(loggedInUser.getBoss3().getChef())); /* chef vom chef vom chef vom chef */
+                            loggedInUser.setBoss4(loggedInUser.getBoss3().getChef() != null ? findLdapUser(loggedInUser.getBoss3().getChef()) : null); /* chef vom chef vom chef vom chef */
                             bossCount += 1;
                         }
                     }
