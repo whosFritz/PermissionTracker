@@ -13,6 +13,7 @@ import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * LoginView is the view for the login page.
@@ -28,6 +29,9 @@ import org.slf4j.LoggerFactory;
 public class LoginView extends VerticalLayout implements BeforeEnterListener {
     private final LoginForm loginForm = new LoginForm();
     Logger logger = LoggerFactory.getLogger(LoginView.class);
+
+    @Value("${ldap.domain.name}")
+    private String domainName;
 
     public LoginView() {
         addClassName("login-view");
@@ -45,7 +49,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
 
         LoginI18n.Form i18nForm = i18n.getForm();
         i18nForm.setTitle("Melde dich an");
-        i18nForm.setUsername("wasserwerke" + '/' + "...");
+        i18nForm.setUsername(domainName + "\\" + "...");
         i18nForm.setPassword("Dein Passwort");
         i18nForm.setSubmit("Anmelden");
         i18nForm.setForgotPassword("Passwort vergessen?");
