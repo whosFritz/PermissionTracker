@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 public class LoginView extends VerticalLayout implements BeforeEnterListener {
     private final LoginForm loginForm = new LoginForm();
     Logger logger = LoggerFactory.getLogger(LoginView.class);
+    pria
 
     public LoginView() {
         addClassName("login-view");
