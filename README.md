@@ -30,13 +30,10 @@ To run the PermissionTracker application locally, follow these steps:
 5. Build and run the application: `mvn spring-boot:run`
 6. Access the application in your web browser at `http://localhost:8080`.
 
-For detailed installation instructions and additional configuration options, please refer to the [Installation Guide]
-<!-- (./docs/installation-guide.md). -->
-
 ## Documentation
 
 Please refer to the inline documentation for additional resources related to the PermissionTracker application. This includes user guides, API documentation, and information about the development process.
-Also checkout the scientific paper about PermissionTracker written by Fritz Schubert
+Also checkout the scientific paper about PermissionTracker written by Fritz Schubert. Reach out to him to read it.
 
 ## Contributing
 
