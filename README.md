@@ -38,6 +38,7 @@ Also checkout the scientific paper about PermissionTracker written by Fritz Schu
 ## Contributing
 
 Contributions to the PermissionTracker project are welcome. If you encounter any issues or have suggestions for improvements, please submit them through the GitHub issue tracker.
+To contribute to the project it's recommended to set up your own email server and active directory. Better do this by providing your own Windows Server Domain Controller with Active Directory and your own Microsoft Exchange Server.
 
 ## License
 
