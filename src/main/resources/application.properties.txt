@@ -19,6 +19,7 @@ ldap.Admin.Dn=CN=Fritz Schubert,OU=OU,DC=my-ldap,DC=local
 ldap.Admin.password=userpassword
 ldap.server.url=ldaps://domaincontroller.my-ldap.local
 ldap.server.domain=my-ldap.local
+ldap.domain.name=yourdomainname (only for showing porpuses)
 # Look at docu about spring boot mail dependency
 mail.smtp.auth=
 mail.smtp.host=

@@ -1,6 +1,8 @@
 # Permission Tracker
 
-PermissionTracker is a web application developed to streamline and secure the process of managing user access rights in an organization. The application allows users to request specific access permissions, such as accessing certain resources or functionalities. These requests are then routed to the respective approvers for review and approval.
+PermissionTracker is a web application developed to streamline and secure the process of managing user access rights in
+an organization. The application allows users to request specific access permissions, such as accessing certain
+resources or functionalities. These requests are then routed to the respective approvers for review and approval.
 
 ## Key Features
 
@@ -19,6 +21,8 @@ PermissionTracker is a web application developed to streamline and secure the pr
 - Git: Version control system for tracking changes in the source code.
 - GitHub: Hosting platform for the project repository.
 
+- Hyper-V-Manager with windows server machines on it for simulating production environment
+
 ## Getting Started
 
 To run the PermissionTracker application locally, follow these steps:
@@ -32,7 +36,8 @@ To run the PermissionTracker application locally, follow these steps:
 
 ## Documentation
 
-Please refer to the inline documentation for additional resources related to the PermissionTracker application. This includes user guides, API documentation, and information about the development process.
+Please refer to the inline documentation for additional resources related to the PermissionTracker application. This
+includes user guides, API documentation, and information about the development process.
 Also checkout the scientific paper about PermissionTracker written by Fritz Schubert. Reach out to him to read it.
 
 ## Contributing
@@ -42,8 +47,10 @@ To contribute to the project it's recommended to set up your own email server an
 
 ## License
 
-PermissionTracker is released under the [MIT License](./license.md). You are free to use, modify, and distribute the application in accordance with the terms of the license.
+PermissionTracker is released under the [MIT License](./license.md). You are free to use, modify, and distribute the
+application in accordance with the terms of the license.
 
 ---
 
-Feel free to update this README file with any additional information or instructions specific to your project. Happy coding!
+Feel free to update this README file with any additional information or instructions specific to your project. Happy
+coding!

@@ -136,6 +136,7 @@ public class PermissionRequestView extends VerticalLayout {
     private Component getToolBar() {
         filterText = new TextField();
         filterText.setPlaceholder("Suche anhand des Namens...");
+        filterText.setWidth("30%");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(event -> updateList());
