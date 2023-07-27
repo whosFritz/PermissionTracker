@@ -4,6 +4,16 @@ PermissionTracker is a web application developed to streamline and secure the pr
 an organization. The application allows users to request specific access permissions, such as accessing certain
 resources or functionalities. These requests are then routed to the respective approvers for review and approval.
 
+## What it looks like
+
+<div style="display: block;margin: 0 auto;">
+  <img src="./login-screen.png" alt="Login Screen" width="100%">
+</div>
+
+<div style="display: block;margin: 0 auto;">
+  <img src="./choose-permission.png" alt="Choose Permission" width="100%">
+</div>
+
 ## Key Features
 
 - User-friendly interface for submitting access permission requests.
@@ -21,7 +31,7 @@ resources or functionalities. These requests are then routed to the respective a
 - Git: Version control system for tracking changes in the source code.
 - GitHub: Hosting platform for the project repository.
 
-- Hyper-V-Manager with windows server machines on it for simulating production environment
+- Hyper-V-Manager with Windows Server machines on it for simulating production environment
 
 ## Getting Started
 
@@ -38,12 +48,14 @@ To run the PermissionTracker application locally, follow these steps:
 
 Please refer to the inline documentation for additional resources related to the PermissionTracker application. This
 includes user guides, API documentation, and information about the development process.
-Also checkout the scientific paper about PermissionTracker written by Fritz Schubert. Reach out to him to read it.
+Also, checkout the scientific paper about PermissionTracker written by Fritz Schubert. Reach out to him to read it.
 
 ## Contributing
 
-Contributions to the PermissionTracker project are welcome. If you encounter any issues or have suggestions for improvements, please submit them through the GitHub issue tracker.
-To contribute to the project it's recommended to set up your own email server and active directory. Better do this by providing your own Windows Server Domain Controller with Active Directory and your own Microsoft Exchange Server.
+Contributions to the PermissionTracker project are welcome. If you encounter any issues or have suggestions for
+improvements, please submit them through the GitHub issue tracker.
+To contribute to the project it's recommended to set up your own email server and active directory. Better do this by
+providing your own Windows Server Domain Controller with Active Directory and your own Microsoft Exchange Server.
 
 ## License
 
