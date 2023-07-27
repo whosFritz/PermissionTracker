@@ -30,10 +30,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
     private final LoginForm loginForm = new LoginForm();
     Logger logger = LoggerFactory.getLogger(LoginView.class);
 
-    @Value("${ldap.domain.name}")
-    private String domainName;
 
-    public LoginView() {
+    public LoginView(@Value("${ldap.domain.name}") String domainName) {
         addClassName("login-view");
         setSizeFull();
         setAlignItems(Alignment.CENTER);
