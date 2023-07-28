@@ -37,7 +37,7 @@ resources or functionalities. These requests are then routed to the respective a
 
 To run the PermissionTracker application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/permission-tracker.git`
+1. Clone the repository: `git clone https://github.com/whosFritz/PermissionTracker.git`
 2. add the necessary application-dev.properties file and edit it urself until every variable is defined.
 3. Install the necessary dependencies using Maven: `mvn install`
 4. Configure the database connection in the `application-dev.properties` file.
